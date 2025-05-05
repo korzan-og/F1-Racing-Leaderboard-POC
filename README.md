@@ -64,14 +64,14 @@ Before you begin, ensure you have the following installed and accounts set up:
 1.  **Clone the repository:**
 
     ```bash
-    git clone <repository_url>
-    cd <repository_directory>
+    git clone [<repository_url>](https://github.com/conflkrupa/F1-Racing-Leaderboard-POC/)
+    cd F1-Racing-Leaderboard-POC
     ```
 
 2.  **Install backend dependencies:**
 
     ```bash
-    cd server
+    cd f1-backend
     npm install
     cd ..
     ```
@@ -85,11 +85,11 @@ Before you begin, ensure you have the following installed and accounts set up:
 2.  **Start the backend server:**
 
     ```bash
-    cd server
+    cd f1-backend
     node server.js
     ```
 
-    * The server will start at `http://localhost:9000`.
+    * The server will start at `http://localhost:9000/api/leaderboard`.
 
 3.  **Open the frontend:**
 
