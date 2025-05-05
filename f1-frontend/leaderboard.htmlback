@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Live Leaderboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=F1+Display&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for F1 styling (inlined for simplicity) */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .f1-font {
+            font-family: 'F1 Display', sans-serif;
+            font-weight: 700;
+        }
+        .driver-name {
+            font-family: 'F1 Display', sans-serif;
+            font-weight: 400; /* Lighter weight for driver names */
+        }
+
+        .leaderboard {
+            background-color: #2d2d2d;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .leaderboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #4a4a4a;
+        }
+        .leaderboard-title {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin: 0;
+        }
+        .leaderboard-refresh {
+            font-size: 0.8rem;
+            color: #717171;
+        }
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .leaderboard-table thead th {
+            padding: 0.75rem 0;
+            text-align: left;
+            border-bottom: 1px solid #4a4a4a;
+            color: #b3b3b3;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .leaderboard-table tbody tr {
+            border-bottom: 1px solid #4a4a4a;
+        }
+        .leaderboard-table tbody tr:last-child {
+            border-bottom: none;
+        }
+        .leaderboard-table tbody td {
+            padding: 0.75rem 0;
+        }
+        .leaderboard-table td:nth-child(1),
+        .leaderboard-table td:nth-child(2),
+        .leaderboard-table td:nth-child(3) {
+            font-weight: 500; /* Make position, number, time bold */
+        }
+        .driver-name {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .driver-name span {
+            color: #ffffff;
+        }
+        .team-color {
+            width: 0.5rem;
+            height: 1.2rem;
+            border-radius: 0.25rem;
+            margin-right: 0.5rem;
+            display: inline-block;
+        }
+        .points {
+            color: #00ff00; /* Positive points */
+        }
+        .points.negative {
+            color: #ff0000; /* Negative points */
+        }
+        .gap {
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+        .fastest-lap {
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+
+        .driver-view {
+            background-color: #2d2d2d;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            height: 100%; /* Make driver view container take full height */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center content horizontally */
+        }
+
+        .driver-view-header {
+            margin-bottom: 1rem;
+            text-align: center; /* Center the title */
+            width: 100%;
+        }
+        .driver-view-title {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .track-visualization {
+            width: 100%;
+            height: 200px; /* Fixed height for the track */
+            background-color: #4a4a4a;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-around; /* Space drivers evenly */
+            align-items: center;  /* Vertically center drivers */
+            position: relative; /* Needed for absolute positioning of drivers */
+        }
+
+        .driver-icon {
+            width: 24px; /* Smaller driver icon */
+            height: 24px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            position: absolute; /* Position absolutely within track */
+            /* বসুন */
+        }
+       .speed-throttle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: auto; /* Push speed and throttle to bottom */
+            padding-top: 1rem;
+            border-top: 1px solid #4a4a4a;
+
+        }
+        .speed {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+        .throttle {
+            width: 80%;
+            height: 0.5rem;
+            background-color: #4a4a4a;
+            border-radius: 0.25rem;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        .throttle-level {
+            height: 100%;
+            background-color: #00ff00;
+            border-radius: 0.25rem;
+            width: 0; /* Start at 0, will be updated with JS */
+            transition: width 0.1s ease; /* Smooth transition */
+        }
+
+        .braking {
+            width: 80%;
+            height: 0.5rem;
+            background-color: #4a4a4a;
+            border-radius: 0.25rem;
+            position: relative;
+        }
+        .braking-level {
+            height: 100%;
+            background-color: #ff0000;
+            border-radius: 0.25rem;
+            width: 0; /* Start at 0, will be updated with JS */
+            transition: width 0.1s ease; /* Smooth transition */
+        }
+
+    </style>
+</head>
+<body class="bg-gray-800 p-4">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="md:col-span-2">
+            <div class="leaderboard">
+                <div class="leaderboard-header">
+                    <h2 class="leaderboard-title f1-font">Live Leaderboard</h2>
+                    <p class="leaderboard-refresh">Refreshing in <span id="refresh-countdown">5</span>s</p>
+                </div>
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Num</th>
+                            <th>Driver</th>
+                            <th>Team</th>
+                            <th>Last Lap</th>
+                            <th>Gap</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="md:col-span-1">
+            <div class="driver-view">
+                <div class="driver-view-header">
+                    <h2 class="driver-view-title f1-font">Driver View</h2>
+                    <p id="selected-driver-name" class="text-gray-300 text-sm">Select a driver from the leaderboard</p>
+
+                </div>
+                <div class="track-visualization" id="track-visualization">
+                    </div>
+                <div class="speed-throttle">
+                    <div class = "speed">Speed: <span id="driver-speed">0</span> km/h</div>
+                    <div class="throttle">
+                        <div class="throttle-level" id="throttle-level"></div>
+                    </div>
+                    <div class="braking">
+                        <div class="braking-level" id="braking-level"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data (replace with actual data from your backend)
+        const sampleLeaderboardData = [
+            { position: 1, number: 1, driver: { firstName: 'Max', lastName: 'Verstappen' }, team: { name: 'Red Bull Racing', color: '#0600ef' }, lastLapTime: 92.123, gapToLeader: 0.000, speed: 280, throttle: 0.95, braking: 0.05 },
+            { position: 2, number: 16, driver: { firstName: 'Charles', lastName: 'Leclerc' }, team: { name: 'Ferrari', color: '#dc0000' }, lastLapTime: 92.456, gapToLeader: 0.333, speed: 278, throttle: 0.92, braking: 0.08 },
+            { position: 3, number: 44, driver: { firstName: 'Lewis', lastName: 'Hamilton' }, team: { name: 'Mercedes', color: '#00d2be' }, lastLapTime: 92.879, gapToLeader: 0.756, speed: 275, throttle: 0.88, braking: 0.12 },
+            { position: 4, number: 4, driver: { firstName: 'Lando', lastName: 'Norris' }, team: { name: 'McLaren', color: '#ff8700' }, lastLapTime: 93.210, gapToLeader: 1.087, speed: 272, throttle: 0.85, braking: 0.15 },
+            { position: 5, number: 55, driver: { firstName: 'Carlos', lastName: 'Sainz' }, team: { name: 'Ferrari', color: '#dc0000' }, lastLapTime: 93.543, gapToLeader: 1.420, speed: 270, throttle: 0.82, braking: 0.18 },
+            { position: 6, number: 11, driver: { firstName: 'Sergio', lastName: 'Pérez' }, team: { name: 'Red Bull Racing', color: '#0600ef' }, lastLapTime: 93.876, gapToLeader: 1.753, speed: 268, throttle: 0.80, braking: 0.20 },
+            { position: 7, number: 63, driver: { firstName: 'George', lastName: 'Russell' }, team: { name: 'Mercedes', color: '#00d2be' }, lastLapTime: 94.209, gapToLeader: 2.086, speed: 265, throttle: 0.78, braking: 0.22 },
+            { position: 8, number: 14, driver: { firstName: 'Fernando', lastName: 'Alonso' }, team: { name: 'Aston Martin', color: '#006633' }, lastLapTime: 94.542, gapToLeader: 2.419, speed: 263, throttle: 0.75, braking: 0.25 },
+            { position: 9, number: 10, driver: { firstName: 'Pierre', lastName: 'Gasly' }, team: { name: 'Alpine', color: '#0090ff' }, lastLapTime: 94.875, gapToLeader: 2.752, speed: 260, throttle: 0.72, braking: 0.28 },
+            { position: 10, number: 31, driver: { firstName: 'Esteban', lastName: 'Ocon' }, team: { name: 'Alpine', color: '#0090ff' }, lastLapTime: 95.208, gapToLeader: 3.085, speed: 258, throttle: 0.70, braking: 0.30 },
+        ];
+
+        const trackLength = 100; // Example track length, adjust as needed
+        const refreshInterval = 5000; // 5 seconds
+
+        let selectedDriverId = null; // Will be set from the home page
+
+        // Function to simulate getting driver data from URL (for demonstration)
+        function getSelectedDriverId() {
+            // In a real application, you would parse the query string from the URL
+            // For example: /leaderboard.html?driverId=44
+            const urlParams = new URLSearchParams(window.location.search);
+            const driverIdParam = urlParams.get('driverId');
+            if (driverIdParam) {
+                selectedDriverId = parseInt(driverIdParam);
+            }
+            return selectedDriverId;
+        }
+
+        // Get selected driver ID from URL
+        const initialSelectedDriverId = getSelectedDriverId();
+
+        // Function to update the leaderboard table
+        function updateLeaderboard(data) {
+            const leaderboardBody = document.getElementById('leaderboard-body');
+            leaderboardBody.innerHTML = ''; // Clear the table
+
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                const teamColor = document.createElement('span');
+                teamColor.className = 'team-color';
+                teamColor.style.backgroundColor = item.team.color;
+
+                const driverName = document.createElement('div');
+                driverName.className = 'driver-name';
+                driverName.appendChild(teamColor);
+                driverName.appendChild(document.createTextNode(`${item.driver.firstName} ${item.driver.lastName}`));
+
+                // Add a click event listener to highlight the selected driver
+                row.addEventListener('click', () => {
+                    selectedDriverId = item.driver.driverId;
+                    updateDriverView(item.driver.driverId); // Update driver view immediately on click
+                    highlightSelectedDriver(item.driver.driverId);
+                });
+
+                const positionCell = document.createElement('td');
+                positionCell.classList.add('f1-font')
+                positionCell.textContent = item.position;
+
+                const numberCell = document.createElement('td');
+                numberCell.classList.add('f1-font')
+                numberCell.textContent = item.number;
+
+                row.appendChild(positionCell);
+                row.appendChild(numberCell);
+                row.appendChild(document.createElement('td').appendChild(driverName));
+                row.appendChild(document.createElement('td').textContent = item.team.name);
+                row.appendChild(document.createElement('td').textContent = item.lastLapTime.toFixed(3));
+                row.appendChild(document.createElement('td').textContent = item.gapToLeader.toFixed(3));
+                leaderboardBody.appendChild(row);
+            });
+            // Highlight the selected driver on initial load
+            if (initialSelectedDriverId) {
+                highlightSelectedDriver(initialSelectedDriverId);
+            }
+            else if (data.length > 0){
+                 highlightSelectedDriver(data[0].driver.driverId);
+            }
+        }
+
+        function highlightSelectedDriver(driverId) {
+            const rows = document.querySelectorAll('#leaderboard-body tr');
+            rows.forEach(row => {
+                row.classList.remove('bg-yellow-500', 'bg-opacity-20'); // Remove highlight
+            });
+            const selectedRow = Array.from(rows).find(row => {
+                const numberCell = row.querySelector('td:nth-child(2)').textContent; // Get driver number
+                const driverNumber = parseInt(numberCell);
+
+                // Get the driver ID from the data-driver-id attribute, if it exists.
+                const rowDriverId = sampleLeaderboardData.find(d => d.number === driverNumber)?.driver.driverId;
+                return rowDriverId === driverId;
+            });
+
+            if (selectedRow) {
+                selectedRow.classList.add('bg-yellow-500', 'bg-opacity-20'); // Apply highlight
+            }
+        }
+
+        // Function to update the driver view
+        function updateDriverView(driverId) {
+            const driver = sampleLeaderboardData.find(d => d.driver.driverId === driverId);
+            const trackVisualization = document.getElementById('track-visualization');
+            trackVisualization.innerHTML = ''; // Clear previous driver icons
+
+            if (driver) {
+                document.getElementById('selected-driver-name').textContent = `${driver.driver.firstName} ${driver.driver.lastName}`;
+
+                // Calculate driver position on track (simple linear interpolation for demo)
+                const driverPosition = (driver.position / 10) * trackLength; // Example: 10 drivers, distribute evenly
+
+                const driverIcon = document.createElement('div');
+                driverIcon.className = 'driver-icon';
+                driverIcon.style.backgroundColor = driver.team.color;
+                driverIcon.style.left = `${driverPosition}px`;  // Set horizontal position
+                trackVisualization.appendChild(driverIcon);
+
+                document.getElementById('driver-speed').textContent = driver.speed;
+                document.getElementById('throttle-level').style.width = `${driver.throttle * 100}%`;
+                document.getElementById('braking-level').style.width = `${driver.braking * 100}%`;
+            }
+            else {
+                document.getElementById('selected-driver-name').textContent = 'Select a driver from the leaderboard';
+                document.getElementById('driver-speed').textContent = '0';
+                document.getElementById('throttle-level').style.width = '0%';
+                document.getElementById('braking-level').style.width = '0%';
+            }
+        }
+
+
+
+        let refreshCountdown = refreshInterval / 1000;
+        const countdownDisplay = document.getElementById('refresh-countdown');
+
+        // Function to start the refresh countdown
+        function startRefreshCountdown() {
+            refreshCountdown = refreshInterval / 1000;
+            countdownDisplay.textContent = refreshCountdown;
+            const intervalId = setInterval(() => {
+                refreshCountdown--;
+                countdownDisplay.textContent = refreshCountdown;
+                if (refreshCountdown <= 0) {
+                    clearInterval(intervalId);
+                    // Fetch new data and update the UI
+                    fetchLeaderboardData(); // Replace with your actual data fetching function
+                    startRefreshCountdown(); // Restart the countdown
+                }
+            }, 1000);
+        }
+
+        // Function to fetch leaderboard data (replace with your actual fetch)
+        function fetchLeaderboardData() {
+            // In a real application, you would fetch data from your backend API
+            // For example:
+            // fetch('/api/leaderboard')
+            //   .then(response => response.json())
+            //   .then(data => {
+            //     updateLeaderboard(data);
+            //     if (selectedDriverId) {
+            //       updateDriverView(selectedDriverId);
+            //     }
+            //   })
+            //   .catch(error => console.error('Error fetching leaderboard data:', error));
+
+            // Simulate API call and data update
+            setTimeout(() => {
+                // Simulate data update (replace with actual data transformation)
+                const newData = sampleLeaderboardData.map(item => {
+                    // Simulate changes in position, speed, throttle, and braking
+                    const randomFactor = Math.random() * 0.2 - 0.1; // Small random change
+                    return {
+                        ...item,
+                        position: Math.max(1, Math.min(10, item.position + Math.floor(Math.random() * 3) - 1)), //randomly change position
+                        lastLapTime: item.lastLapTime + randomFactor,
+                        speed: Math.max(0, Math.min(300, item.speed + (Math.random() * 10 - 5))),
+                        throttle: Math.max(0, Math.min(1, item.throttle + (Math.random() * 0.05 - 0.025))),
+                        braking: Math.max(0, Math.min(1, item.braking + (Math.random() * 0.05 - 0.025))),
+                    };
+                }).sort((a, b) => a.position - b.position); // Sort by position
+
+                updateLeaderboard(newData);
+                if (selectedDriverId) {
+                    updateDriverView(selectedDriverId);
+                }
+            }, 500); // Simulate network latency
+        }
+
+        // Initial load and start refresh cycle
+        updateLeaderboard(sampleLeaderboardData); // Initial render
+        if (initialSelectedDriverId) {
+          updateDriverView(initialSelectedDriverId);
+        }
+        else{
+            updateDriverView(sampleLeaderboardData[0].driver.driverId);
+        }
+        startRefreshCountdown(); // Start the countdown
+    </script>
+</body>
+</html>
