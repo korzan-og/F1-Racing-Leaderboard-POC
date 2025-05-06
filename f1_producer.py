@@ -5,11 +5,11 @@ import random
 
 # Confluent Cloud Configuration
 conf = {
-    'bootstrap.servers': 'pkc-921jm.us-east-2.aws.confluent.cloud:9092',  # Replace with your cluster's bootstrap servers
+    'bootstrap.servers': '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>',  # Replace with your cluster's bootstrap servers
     'security.protocol': 'SASL_SSL',
     'sasl.mechanism': 'PLAIN',
-    'sasl.username': 'TXETCUHMGAN4P72V',      # Replace with your API key
-    'sasl.password': 'gNUb7Xh5kYX+I5Blyt7Bh3ppcL2xP2mfv/rSaYuOQZCv2BK9mPv3BrHEXCwSV7vR'   # Replace with your API secret
+    'sasl.username': '<YOUR_CONFLUENT_CLOUD_API_KEY>',      # Replace with your API key
+    'sasl.password': '<YOUR_CONFLUENT_CLOUD_API_SECRET>'   # Replace with your API secret
 }
 
 producer = Producer(conf)
