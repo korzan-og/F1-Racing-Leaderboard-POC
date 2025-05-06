@@ -20,10 +20,7 @@ This application provides a live view of an F1 racing leaderboard, along with de
 * [Error Handling](#error-handling)
 * [Directory Structure](#directory-structure)
 * [Configuration](#configuration)
-* [Future Enhancements](#future-enhancements)
-* [Contributing](#contributing)
-* [License](#license)
-* [Contact](#contact)
+
 
 ##   Features
 
