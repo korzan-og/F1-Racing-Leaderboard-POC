@@ -169,7 +169,8 @@ The frontend is a single HTML page that displays the live F1 leaderboard and dri
    * Create an API key (we will use it to authenticate to Confluent Cloud Cluster)
    * Go to topics in the left navigation pane, click topics
    * Create a topic with default configuration and name it "f1.leaderboard.results".
-  
+
+## Redis Usage
 Redis acts as a high-speed, efficient layer between the backend server and the data source (Confluent Cloud Kafka). It significantly improves the application's performance, reduces the load on Kafka, and enhances the user experience by providing fast access to the leaderboard data.
 
 * **Key:** The leaderboard data is stored under the key `f1_leaderboard_data`. 
