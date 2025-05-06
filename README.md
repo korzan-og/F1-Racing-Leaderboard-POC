@@ -17,7 +17,8 @@ This application provides a live view of an F1 racing leaderboard, along with de
 * [Confluent Cloud (Kafka) Integration](#confluent-cloud-kafka-integration)
 * [Redis Usage](#redis-usage)
 * [Graceful Shutdown](#graceful-shutdown)
-* [Configuration](#configuration)
+* [Error Handling](#error-handling)
+* [Directory Structure](#directory-structure)
 
 
 ##   Features
@@ -28,8 +29,7 @@ This application provides a live view of an F1 racing leaderboard, along with de
 * **Backend API:** Provides a RESTful API for fetching leaderboard data.
 * **Redis Caching:** Uses Redis to cache and serve leaderboard data efficiently.
 * **User-Friendly Interface:** Clean and intuitive design with F1-themed styling.
-* **Error Handling:** Robust error handling for API requests and data processing.
-* **Responsive Layout:** Designed to work on various screen sizes.
+
 
 ##   Technologies Used
 
@@ -49,14 +49,14 @@ Before you begin, ensure you have the following installed and accounts set up:
 
 * **Node.js and npm:** [https://nodejs.org/](https://nodejs.org/)
 * **Redis:** [https://redis.io/download](https://redis.io/download) (or accessible Redis instance)
-* **Confluent Cloud Account:** You'll need an account on Confluent Cloud with a Kafka cluster set up. [https://www.confluent.io/confluent-cloud/tryfree/](https://www.confluent.io/confluent-cloud/tryfree/)
+* **Confluent Cloud Account:** You'll need an account on Confluent Cloud with a Kafka cluster set up. [https://www.confluent.io/confluent-cloud/tryfree](https://www.confluent.io/confluent-cloud/tryfree/)
 
 ##   Installation
 
 1.  **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/conflkrupa/F1-Racing-Leaderboard-POC/](https://github.com/conflkrupa/F1-Racing-Leaderboard-POC/)
+    git clone https://github.com/conflkrupa/F1-Racing-Leaderboard-POC/ (https://github.com/conflkrupa/F1-Racing-Leaderboard-POC/)
     cd F1-Racing-Leaderboard-POC
     ```
 
@@ -168,5 +168,47 @@ The frontend is a single HTML page that displays the live F1 leaderboard and dri
 The backend is specifically designed to integrate with Confluent Cloud for real-time data streaming.
 
 * **Configuration:** The Kafka consumer is configured to connect to Confluent Cloud using SASL authentication.  Ensure you provide the correct `KAFKA_BROKERS`, `KAFKA_API_KEY`, `KAFKA_API_SECRET`, `KAFKA_TOPIC`, and `KAFKA_GROUP_ID`.
-* **Data Format:** The
- 
+* **Data Format:** The backend expects Kafka messages to contain a JSON array representing the leaderboard data. Each object in the array should include fields like `position`, `driver`, `team`, `points`, and `interval`.
+
+ * **Real-time Updates:** As new leaderboard data is produced to the Kafka topic in Confluent Cloud, the backend consumes these messages and updates the data in Redis, which is then reflected in the frontend. 
+
+## Redis Usage 
+Redis acts as a high-speed, efficient layer between the backend server and the data source (Confluent Cloud Kafka). It significantly improves the application's performance, reduces the load on Kafka, and enhances the user experience by providing fast access to the leaderboard data.
+
+* **Key:** The leaderboard data is stored under the key `f1_leaderboard_data`. 
+* **Data Format:** The data is stored as a JSON string. 
+
+## Graceful Shutdown 
+The backend is designed to shut down gracefully, ensuring that connections to Confluent Cloud (Kafka) and Redis are closed properly. This prevents data loss and ensures a clean exit. 
+
+* **Signal Handling:** The server listens for signals such as `SIGHUP`, `SIGINT`, and `SIGTERM`. 
+* **Cleanup:** When a signal is received, the server disconnects the Kafka consumer, closes the Redis connection, and then exits. 
+
+## Error Handling The application includes error handling to provide informative messages and prevent crashes. 
+But in case you face issues related to your messages not getting into redis, refer to the following solution.
+
+Problem : OPENSSL not available at build time error
+Solution : Set LDFLAGS and CPPFLAGS
+When you install OpenSSL with Homebrew on macOS, it's often installed in a location like /usr/local/opt/openssl (or /opt/homebrew/opt/openssl on Apple Silicon Macs), which isn't in the default search path for compilers. 
+brew --prefix openssl
+This command will output the path, for example, /usr/local/opt/openssl@1.1 or /opt/homebrew/opt/openssl@3 (the version might differ). Let's call this path OPENSSL_PREFIX.
+export LDFLAGS="-LOPENSSL_PREFIX/lib"
+export CPPFLAGS="-IOPENSSL_PREFIX/include"
+This will create environment variables to use the openssl.
+npm uninstall node-rdkafka # If it was previously installed without SSL support
+npm install node-rdkafka
+The npm install process for node-rdkafka should now pick up these environment variables and use them to find the Homebrew-installed OpenSSL libraries and headers, allowing it to compile with SSL support.
+
+
+## Directory Structure
+f1_backend
+├── server.js # Backend server (Node.js) 
+f1-frontend
+├── racing_leaderboard.html # Frontend (HTML) 
+f1-producer.py #producer to produce records to Confluent Cloud topic
+ README.md # Documentation
+
+
+
+
+
