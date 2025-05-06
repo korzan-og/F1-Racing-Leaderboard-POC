@@ -1,4 +1,6 @@
-#   F1 Live Leaderboard Application 
+[EDIT] Readme for F1 app
+
+#   F1 Live Leaderboard Application
 
 This application provides a live view of an F1 racing leaderboard, along with detailed information about a selected driver. It uses a backend (Node.js with Express) to retrieve and process data from Confluent Cloud (Kafka) and a frontend (HTML/JavaScript) to display the information.
 
@@ -26,7 +28,7 @@ This application provides a live view of an F1 racing leaderboard, along with de
 ##   Features
 
 * **Live Leaderboard:** Displays real-time F1 racing standings.
-* **Driver Details:** Provides information on individual drivers, position in the Lap, interval.
+* **Driver Details:** Provides information on individual drivers, position in the lap, and interval.
 * **Real-time Updates:** Leaderboard data is updated in real-time via Confluent Cloud (Kafka).
 * **Backend API:** Provides a RESTful API for fetching leaderboard data.
 * **Redis Caching:** Uses Redis to cache and serve leaderboard data efficiently.
@@ -38,18 +40,13 @@ This application provides a live view of an F1 racing leaderboard, along with de
 
 * **Backend:**
     * Node.js
-    * Express
-    * ioredis (Redis client)
-    * node-rdkafka (Kafka client)
-    * cors (Cross-Origin Resource Sharing)
+    * Python
 * **Frontend:**
     * HTML
     * CSS
     * JavaScript
-    * Tailwind CSS
-    * Google Fonts
 * **Data Streaming:**
-    * Confluent Cloud (Kafka)
+    * Confluent Cloud
 
 ##   Prerequisites
 
@@ -57,14 +54,14 @@ Before you begin, ensure you have the following installed and accounts set up:
 
 * **Node.js and npm:** [https://nodejs.org/](https://nodejs.org/)
 * **Redis:** [https://redis.io/download](https://redis.io/download) (or accessible Redis instance)
-* **Confluent Cloud Account:** You'll need an account on Confluent Cloud with a Kafka cluster set up. [https://www.confluent.io/confluent-cloud/](https://www.confluent.io/confluent-cloud/)
+* **Confluent Cloud Account:** You'll need an account on Confluent Cloud with a Kafka cluster set up. [https://www.confluent.io/confluent-cloud/tryfree/](https://www.confluent.io/confluent-cloud/tryfree/)
 
 ##   Installation
 
 1.  **Clone the repository:**
 
     ```bash
-    git clone [<repository_url>](https://github.com/conflkrupa/F1-Racing-Leaderboard-POC/)
+    git clone [https://github.com/conflkrupa/F1-Racing-Leaderboard-POC/](https://github.com/conflkrupa/F1-Racing-Leaderboard-POC/)
     cd F1-Racing-Leaderboard-POC
     ```
 
@@ -98,7 +95,7 @@ Before you begin, ensure you have the following installed and accounts set up:
 
 ##   Backend Setup (`server.js`)
 
-The backend is built with Node.js and Express. It handles API requests, retrieves data from Redis, and, most importantly, consumes real-time data from Confluent Cloud (Kafka).
+The backend is built with Node.js and Express. It handles API requests, retrieves data from Redis, and consumes real-time data from Confluent Cloud (Kafka).
 
 ###   Configuration
 
@@ -177,3 +174,4 @@ The backend is specifically designed to integrate with Confluent Cloud for real-
 
 * **Configuration:** The Kafka consumer is configured to connect to Confluent Cloud using SASL authentication.  Ensure you provide the correct `KAFKA_BROKERS`, `KAFKA_API_KEY`, `KAFKA_API_SECRET`, `KAFKA_TOPIC`, and `KAFKA_GROUP_ID`.
 * **Data Format:** The
+ 
