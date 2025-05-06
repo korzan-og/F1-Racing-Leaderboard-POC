@@ -18,7 +18,6 @@ This application provides a live view of an F1 racing leaderboard, along with de
 * [Redis Usage](#redis-usage)
 * [Graceful Shutdown](#graceful-shutdown)
 * [Error Handling](#error-handling)
-* [Directory Structure](#directory-structure)
 
 
 ##   Features
@@ -198,15 +197,6 @@ This will create environment variables to use the openssl.
 npm uninstall node-rdkafka # If it was previously installed without SSL support
 npm install node-rdkafka
 The npm install process for node-rdkafka should now pick up these environment variables and use them to find the Homebrew-installed OpenSSL libraries and headers, allowing it to compile with SSL support.
-
-
-## Directory Structure
-f1_backend
-├── server.js # Backend server (Node.js) 
-f1-frontend
-├── racing_leaderboard.html # Frontend (HTML) 
-f1-producer.py #producer to produce records to Confluent Cloud topic
- README.md # Documentation
 
 
 
