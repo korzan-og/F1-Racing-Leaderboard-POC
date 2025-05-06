@@ -17,8 +17,6 @@ This application provides a live view of an F1 racing leaderboard, along with de
 * [Confluent Cloud (Kafka) Integration](#confluent-cloud-kafka-integration)
 * [Redis Usage](#redis-usage)
 * [Graceful Shutdown](#graceful-shutdown)
-* [Error Handling](#error-handling)
-* [Directory Structure](#directory-structure)
 * [Configuration](#configuration)
 
 
