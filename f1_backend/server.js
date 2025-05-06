@@ -17,9 +17,9 @@ const REDIS_LEADERBOARD_KEY = 'f1_leaderboard_data';
 
 // --- Kafka Configuration for Confluent Kafka ---
 // ** IMPORTANT: Replace placeholders with your Confluent Cloud credentials and broker list **
-const KAFKA_BROKERS = 'pkc-921jm.us-east-2.aws.confluent.cloud:9092'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
-const KAFKA_API_KEY =  'TXETCUHMGAN4P72V';
-const KAFKA_API_SECRET = 'gNUb7Xh5kYX+I5Blyt7Bh3ppcL2xP2mfv/rSaYuOQZCv2BK9mPv3BrHEXCwSV7vR';
+const KAFKA_BROKERS = '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
+const KAFKA_API_KEY =  '<YOUR_CONFLUENT_CLOUD_API_KEY>';
+const KAFKA_API_SECRET = '<YOUR_CONFLUENT_CLOUD_API_SECRET>';
 
 const KAFKA_TOPIC = 'f1.leaderboard.results'; // The Kafka topic to consume from
 const KAFKA_GROUP_ID = 'f1-leaderboard-consumer-group';
