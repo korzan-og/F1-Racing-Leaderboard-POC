@@ -164,14 +164,12 @@ The frontend is a single HTML page that displays the live F1 leaderboard and dri
 
 ##   Confluent Cloud (Kafka) Integration
 
-The backend is specifically designed to integrate with Confluent Cloud for real-time data streaming.
-
-* **Configuration:** The Kafka consumer is configured to connect to Confluent Cloud using SASL authentication.  Ensure you provide the correct `KAFKA_BROKERS`, `KAFKA_API_KEY`, `KAFKA_API_SECRET`, `KAFKA_TOPIC`, and `KAFKA_GROUP_ID`.
-* **Data Format:** The backend expects Kafka messages to contain a JSON array representing the leaderboard data. Each object in the array should include fields like `position`, `driver`, `team`, `points`, and `interval`.
-
- * **Real-time Updates:** As new leaderboard data is produced to the Kafka topic in Confluent Cloud, the backend consumes these messages and updates the data in Redis, which is then reflected in the frontend. 
-
-## Redis Usage 
+   * [Sign in](https://confluent.cloud/auth_callback) to Confluent Cloud
+   * Create an Environment and a basic Cluster
+   * Create an API key (we will use it to authenticate to Confluent Cloud Cluster)
+   * Go to topics in the left navigation pane, click topics
+   * Create a topic with default configuration and name it "f1.leaderboard.results".
+  
 Redis acts as a high-speed, efficient layer between the backend server and the data source (Confluent Cloud Kafka). It significantly improves the application's performance, reduces the load on Kafka, and enhances the user experience by providing fast access to the leaderboard data.
 
 * **Key:** The leaderboard data is stored under the key `f1_leaderboard_data`. 
