@@ -1,4 +1,3 @@
-[EDIT] Readme for F1 app
 
 #   F1 Live Leaderboard Application
 
