@@ -166,7 +166,7 @@ The frontend is a single HTML page that displays the live F1 leaderboard and dri
 
    * [Sign in](https://confluent.cloud/auth_callback) to Confluent Cloud
    * Create an Environment and a basic Cluster
-   * Create an API key (we will use it to authenticate to Confluent Cloud Cluster)
+   * Create an API key using service account in Accounts and Access section(we will use it to authenticate to Confluent Cloud Cluster)
    * Go to topics in the left navigation pane, click topics
    * Create a topic with default configuration and name it "f1.leaderboard.results".
 
