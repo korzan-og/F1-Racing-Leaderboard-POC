@@ -181,9 +181,9 @@ The backend is built with Node.js and Express. It handles API requests, retrieve
 
 ##  Confluent Cloud (Kafka) Integration
 
-    * [Sign in](https://confluent.cloud/auth_callback) to Confluent Cloud
+    * Sign in to Confluent Cloud- (https://confluent.cloud/auth_callback)
     * Create an Environment and a basic Cluster
-    * Create an API key using service account in [Accounts and Access](https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/service-accounts/api-keys/overview.html) section(we will use it to authenticate to Confluent Cloud Cluster)
+    * Create an API key using service account in Accounts and Access(https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/service-accounts/api-keys/overview.html) section(we will use it to authenticate to Confluent Cloud Cluster)
     * Go to topics in the left navigation pane, click topics
     * Create a topic with default configuration and name it "f1.leaderboard.results".
 
