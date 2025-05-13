@@ -74,10 +74,10 @@ Before you begin, ensure you have the following installed and accounts set up:
       * Add your Confluent Cloud Endpoint Url, API Key and API Secret in f1_producer.py as in the lines given below.
 
     ```javascript
-    const KAFKA_BROKERS = 'your_confluent_cloud_brokers'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
-    const KAFKA_API_KEY = 'your_confluent_cloud_api_key';
-    const KAFKA_API_SECRET = 'your_confluent_cloud_api_secret';
-    const KAFKA_TOPIC = 'your_kafka_topic'; // The Kafka topic to consume from
+    const KAFKA_BROKERS = '<CONFLUENT_CLOUD_BOOTSTRAP_SERVER_URL>'; // this is available in Cluster settings in the form of 'pkc-xxxx.region.provider.confluent.cloud:9092'
+    const KAFKA_API_KEY = '<CONFLUENT_CLOUD_API_KEY>'; // this is available in the API keys section of Cluster overview once it is created.
+    const KAFKA_API_SECRET = '<CONFLUENT_CLOUD_API_SECRET>';  // this is available in the API keys section of Cluster overview once it is created.
+    const KAFKA_TOPIC = 'f1.leaderboard.results'; // The Kafka topic to consume from
     const KAFKA_GROUP_ID = 'your_kafka_consumer_group_id';
     ```
 
