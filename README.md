@@ -55,7 +55,7 @@ Before you begin, ensure you have the following installed and accounts set up:
 1.  **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/conflkrupa/F1-Racing-Leaderboard-POC/](https://github.com/conflkrupa/F1-Racing-Leaderboard-POC/) ([https://github.com/conflkrupa/F1-Racing-Leaderboard-POC/](https://github.com/conflkrupa/F1-Racing-Leaderboard-POC/))
+    git clone [https://github.com/conflkrupa/F1-Racing-Leaderboard-POC/](https://github.com/conflkrupa/F1-Racing-Leaderboard-POC/)
     cd F1-Racing-Leaderboard-POC
     ```
 
@@ -90,7 +90,7 @@ Before you begin, ensure you have the following installed and accounts set up:
    * The server will start at `http://localhost:9000/api/leaderboard`.
    * Open another new terminal and run
 
-    ```bash
+    ``` bash
         cd f1-backend
         node server.js
      ```
