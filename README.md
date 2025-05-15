@@ -113,43 +113,43 @@ Before you begin, ensure you have the following installed and accounts set up:
 
     This command will output the path, for example, `/usr/local/opt/openssl@1.1` or `/opt/homebrew/opt/openssl@3` (the version might differ). We will copy this path into variable `OPENSSL_PREFIX`.
 
-   *Set environment variables:**
+     *Set environment variables:**
 
-    ```bash
-       export OPENSSL_PREFIX="/usr/local/opt/openssl@1.1"
-       export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
-       export CPPFLAGS="-I${OPENSSL_PREFIX}/include"
-    ```
+       ```bash
+        export OPENSSL_PREFIX="/usr/local/opt/openssl@1.1"
+        export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
+        export CPPFLAGS="-I${OPENSSL_PREFIX}/include"
+       ```
 
     This will create environment variables to use the openssl.
 
-   *Reinstall `node-rdkafka`:**
+    *Reinstall `node-rdkafka`:**
 
-    ```bash
-    npm uninstall node-rdkafka # If it was previously installed without SSL support
-    npm install node-rdkafka
-    ```
+     ```bash
+      npm uninstall node-rdkafka # If it was previously installed without SSL support
+      npm install node-rdkafka
+     ```
 
-   * The `npm install` process for `node-rdkafka` should now pick up these environment variables and use them to find the Homebrew-installed OpenSSL libraries and headers, allowing it to compile with SSL support.
-   * Make sure to add the Confluent cloud details are addedbelow in the server.js.
+    * The `npm install` process for `node-rdkafka` should now pick up these environment variables and use them to find the Homebrew-installed OpenSSL libraries and headers, allowing it to compile with SSL support.
+    * Make sure to add the Confluent cloud details are addedbelow in the server.js.
           
-        ```bash  
-          cd f1_backend
-        ```
-        ```javascript
-             const KAFKA_BROKERS = '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
-             const KAFKA_API_KEY = '<YOUR_CONFLUENT_CLOUD_API_KEY>';
-             const KAFKA_API_SECRET = '<YOUR_CONFLUENT_CLOUD_API_SECRET>';
-        ```
+      ```bash  
+      cd f1_backend
+      ```
+      ```javascript
+       const KAFKA_BROKERS = '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
+       const KAFKA_API_KEY = '<YOUR_CONFLUENT_CLOUD_API_KEY>';
+       const KAFKA_API_SECRET = '<YOUR_CONFLUENT_CLOUD_API_SECRET>';
+      ```
    * start the redis server by opening a new terminal and run the following.
      ```bash
-           redis-server
+      redis-server
      ```      
    * Open another new terminal and run
 
     ```bash
-        cd f1_backend
-        node server.js
+      cd f1_backend
+      node server.js
      ```
    * The server will start at `http://localhost:9000/api/leaderboard`.
     
