@@ -126,7 +126,19 @@ Before you begin, ensure you have the following installed and accounts set up:
     ```
 
     * The `npm install` process for `node-rdkafka` should now pick up these environment variables and use them to find the Homebrew-installed OpenSSL libraries and headers, allowing it to compile with SSL support.
-      
+      * Make sure to add the Confluent cloud details below in the server.js.
+          
+        ```bash  
+          cd f1_backend
+         ```
+      ```javascript
+    const KAFKA_BROKERS = 'your_confluent_cloud_brokers'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
+    const KAFKA_API_KEY = 'your_confluent_cloud_api_key';
+    const KAFKA_API_SECRET = 'your_confluent_cloud_api_secret';
+    const KAFKA_TOPIC = 'your_kafka_topic'; // The Kafka topic to consume from
+    const KAFKA_GROUP_ID = 'your_kafka_consumer_group_id';
+    ```
+             
       * Open another new terminal and run
 
     ```bash
