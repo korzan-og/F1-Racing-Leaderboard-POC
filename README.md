@@ -95,8 +95,7 @@ Before you begin, ensure you have the following installed and accounts set up:
       11.  Download the API Key and Secret and click Complete.
     * Go to topics in the left navigation pane, click topics
     * Create a topic with default configuration and name it "f1.leaderboard.results". Create with Defaults. Skip the data contracts for now.
-    * Open the f1_producer.py.
-    * Add your Confluent Cloud Endpoint Url, API Key and API Secret in f1_producer.py as in the lines given below.
+    * OOpen the f1_producer.py file on your laptop and add the Confluent Cloud Kafka bootstrap server endpoint, API Key, and API Secret in the f1_producer.py file as shown below:
 
     ```javascript
     conf = {
