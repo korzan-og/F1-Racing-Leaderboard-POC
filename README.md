@@ -145,9 +145,9 @@ Before you begin, ensure you have the following installed and accounts set up:
      ```bash
       redis-server
      ```      
-   * Open another new terminal and run
+   * Open another new terminal and run:
 
-    ```bash
+     ```bash
       cd f1_backend
       node server.js
      ```
