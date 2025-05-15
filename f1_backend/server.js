@@ -118,7 +118,7 @@ app.get('/api/leaderboard', async (req, res) => {
     } else {
       // If no data in Redis (e.g., Kafka consumer hasn't received messages yet or topic is empty)
       console.log('API: No data currently in Redis. Waiting for Kafka messages.');
-      res.json("No data found, fuck off !"); // Return an empty array
+      res.json("No data received in the backend!"); // Return an empty array
     }
   } catch (error) {
     console.error('API Error fetching leaderboard from Redis:', error);
