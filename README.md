@@ -141,7 +141,7 @@ Before you begin, ensure you have the following installed and accounts set up:
        const KAFKA_API_KEY = '<YOUR_CONFLUENT_CLOUD_API_KEY>';
        const KAFKA_API_SECRET = '<YOUR_CONFLUENT_CLOUD_API_SECRET>';
       ```
-   * start the redis server by opening a new terminal and run the following.
+   * In case you have installed redis as a software, start the redis server by opening a new terminal and run the following. If you have installed using "brew install redis", you can skip this step.
      ```bash
       redis-server
      ```      
