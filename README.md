@@ -73,6 +73,12 @@ Before you begin, ensure you have the following installed and accounts set up:
 
 1.  **Run the Producer code**
       * Open the f1_producer.py.
+    * Sign in to Confluent Cloud- (https://confluent.cloud/auth_callback)
+    * Create an Environment and a basic Cluster
+    * Create an API key using service account in Accounts and Access(https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/service-accounts/api-keys/overview.html) section(we will use it to authenticate to Confluent Cloud Cluster)
+    * Go to topics in the left navigation pane, click topics
+    * Create a topic with default configuration and name it "f1.leaderboard.results".
+
       * Add your Confluent Cloud Endpoint Url, API Key and API Secret in f1_producer.py as in the lines given below.
 
     ```javascript
@@ -184,13 +190,6 @@ The backend is built with Node.js and Express. It handles API requests, retrieve
 
 * `/api/leaderboard` (GET): Returns the current leaderboard data as a JSON array.
 
-##  Confluent Cloud (Kafka) Integration
-
-    * Sign in to Confluent Cloud- (https://confluent.cloud/auth_callback)
-    * Create an Environment and a basic Cluster
-    * Create an API key using service account in Accounts and Access(https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/service-accounts/api-keys/overview.html) section(we will use it to authenticate to Confluent Cloud Cluster)
-    * Go to topics in the left navigation pane, click topics
-    * Create a topic with default configuration and name it "f1.leaderboard.results".
 
 ## Redis Usage
 Redis acts as a high-speed, efficient layer between the backend server and the data source (Confluent Cloud Kafka). It significantly improves the application's performance, reduces the load on Kafka, and enhances the user experience by providing fast access to the leaderboard data.
