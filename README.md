@@ -72,14 +72,14 @@ Before you begin, ensure you have the following installed and accounts set up:
 ##  Running the Application
 
 1.  **Run the Producer code**
-      * Open the f1_producer.py.
+      
     * Sign in to Confluent Cloud- (https://confluent.cloud/auth_callback)
     * Create an Environment and a basic Cluster
     * Create an API key using service account in Accounts and Access(https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/service-accounts/api-keys/overview.html) section(we will use it to authenticate to Confluent Cloud Cluster)
     * Go to topics in the left navigation pane, click topics
     * Create a topic with default configuration and name it "f1.leaderboard.results".
-
-      * Add your Confluent Cloud Endpoint Url, API Key and API Secret in f1_producer.py as in the lines given below.
+    * Open the f1_producer.py.
+    * Add your Confluent Cloud Endpoint Url, API Key and API Secret in f1_producer.py as in the lines given below.
 
     ```javascript
     const KAFKA_BROKERS = '<CONFLUENT_CLOUD_BOOTSTRAP_SERVER_URL>'; // this is available in Cluster settings in the form of 'pkc-xxxx.region.provider.confluent.cloud:9092'
