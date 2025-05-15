@@ -107,13 +107,14 @@ Before you begin, ensure you have the following installed and accounts set up:
     brew --prefix openssl
     ```
 
-    This command will output the path, for example, `/usr/local/opt/openssl@1.1` or `/opt/homebrew/opt/openssl@3` (the version might differ). Let's call this path `OPENSSL_PREFIX`.
+    This command will output the path, for example, `/usr/local/opt/openssl@1.1` or `/opt/homebrew/opt/openssl@3` (the version might differ). We will copy this path into variable `OPENSSL_PREFIX`.
 
    *Set environment variables:**
 
     ```bash
-    export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
-    export CPPFLAGS="-I${OPENSSL_PREFIX}/include"
+       export OPENSSL_PREFIX="/usr/local/opt/openssl@1.1"
+       export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
+       export CPPFLAGS="-I${OPENSSL_PREFIX}/include"
     ```
 
     This will create environment variables to use the openssl.
