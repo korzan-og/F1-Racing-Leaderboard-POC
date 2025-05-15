@@ -158,38 +158,6 @@ Before you begin, ensure you have the following installed and accounts set up:
 
 The backend is built with Node.js and Express. It handles API requests, retrieves data from Redis, and consumes real-time data from Confluent Cloud (Kafka).
 
-###  Configuration
-
-* **Port:** The server runs on port `9000` by default. You can change this in `server.js`:
-
-    ```javascript
-    const PORT = 9000;
-    ```
-
-* **Redis:** The server connects to Redis using default settings for local instances. If you're using a remote Redis instance (e.g., cloud-hosted), update the connection details:
-
-    ```javascript
-    const redis = new Redis({ host: 'your_redis_host', port: your_redis_port });
-    ```
-
-* **Confluent Cloud (Kafka):** To connect to Confluent Cloud, you **must** update the following configuration in `server.js` with your Confluent Cloud cluster details:
-
-    ```javascript
-    const KAFKA_BROKERS = 'your_confluent_cloud_brokers'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
-    const KAFKA_API_KEY = 'your_confluent_cloud_api_key';
-    const KAFKA_API_SECRET = 'your_confluent_cloud_api_secret';
-    const KAFKA_TOPIC = 'your_kafka_topic'; // The Kafka topic to consume from
-    const KAFKA_GROUP_ID = 'your_kafka_consumer_group_id';
-    ```
-
-    * You can find these credentials in your Confluent Cloud cluster settings.
-
-###  Dependencies
-
-* `express`
-* `cors`
-* `ioredis`
-* `node-rdkafka`
 
 ###  Key Functionality
 
