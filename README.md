@@ -85,6 +85,7 @@ Before you begin, ensure you have the following installed and accounts set up:
 
        * Run the following:
      ```bash
+        pip3 install confluent-kafka
         python3 f1_producer.py
      ```
        
