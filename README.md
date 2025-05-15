@@ -114,7 +114,7 @@ Before you begin, ensure you have the following installed and accounts set up:
      ```
        * Ensure this terminal window is running continuoulsy. Do not close this window.
 3.  **Start the backend server:**
-      * When you install OpenSSL with Homebrew on macOS, it's often installed in a location like `/usr/local/opt/openssl` (or `/opt/homebrew/opt/openssl@3` on Apple Silicon Macs), which isn't in the default search path for compilers.
+      * When you install OpenSSL with Homebrew on macOS, it's often installed in a location like /usr/local/opt/openssl (or /opt/homebrew/opt/openssl@3 on Apple Silicon Macs), which isn't in the default search path for compilers.
 
       *Find the OpenSSL prefix:**
 
@@ -122,7 +122,7 @@ Before you begin, ensure you have the following installed and accounts set up:
     brew --prefix openssl
     ```
 
-    This command will output the path, for example, `/usr/local/opt/openssl@1.1` or `/opt/homebrew/opt/openssl@3` (the version might differ). We will copy this path into variable `OPENSSL_PREFIX`. If no path is returned, it means that openssl is not installed. In this case, run the following:
+    This command will output the path, for example, /usr/local/opt/openssl@1.1 or /opt/homebrew/opt/openssl@3 (the version might differ). We will copy this path into variable OPENSSL_PREFIX. If no path is returned, it means that openssl is not installed. In this case, run the following:
 
        ```bash
          brew update
