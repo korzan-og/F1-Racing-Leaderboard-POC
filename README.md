@@ -99,14 +99,13 @@ Before you begin, ensure you have the following installed and accounts set up:
      ```
        * Ensure this terminal window is running continuoulsy. Do not close this window.
 3.  **Start the backend server:**
-      * The server will start at `http://localhost:9000/api/leaderboard`.
       * Open another new terminal and run
 
     ```bash
         cd f1_backend
         node server.js
      ```
-
+      * The server will start at `http://localhost:9000/api/leaderboard`.
     
 
 4.  **Run the frontend:**
