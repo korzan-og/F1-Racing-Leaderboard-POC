@@ -125,8 +125,8 @@ Before you begin, ensure you have the following installed and accounts set up:
     npm install node-rdkafka
     ```
 
-    * The `npm install` process for `node-rdkafka` should now pick up these environment variables and use them to find the Homebrew-installed OpenSSL libraries and headers, allowing it to compile with SSL support.
-      * Make sure to add the Confluent cloud details below in the server.js.
+   * The `npm install` process for `node-rdkafka` should now pick up these environment variables and use them to find the Homebrew-installed OpenSSL libraries and headers, allowing it to compile with SSL support.
+   * Make sure to add the Confluent cloud details are addedbelow in the server.js.
           
         ```bash  
           cd f1_backend
@@ -139,13 +139,13 @@ Before you begin, ensure you have the following installed and accounts set up:
     const KAFKA_GROUP_ID = 'your_kafka_consumer_group_id';
     ```
              
-      * Open another new terminal and run
+   * Open another new terminal and run
 
     ```bash
         cd f1_backend
         node server.js
      ```
-      * The server will start at `http://localhost:9000/api/leaderboard`.
+   * The server will start at `http://localhost:9000/api/leaderboard`.
     
 
 5.  **Run the frontend:**
