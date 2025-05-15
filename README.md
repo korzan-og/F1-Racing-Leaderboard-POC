@@ -74,7 +74,7 @@ Before you begin, ensure you have the following installed and accounts set up:
 1.  **Run the Producer code**
       
     * Sign in to Confluent Cloud- (https://confluent.cloud/auth_callback)
-    * Create an Environment and a basic Cluster
+    * Create an Environment and a Basic Cluster
     * Create an API key using service account in Accounts and Access(https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/service-accounts/api-keys/overview.html) section(we will use it to authenticate to Confluent Cloud Cluster)
     * Go to topics in the left navigation pane, click topics
     * Create a topic with default configuration and name it "f1.leaderboard.results".
