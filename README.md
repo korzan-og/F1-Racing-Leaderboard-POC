@@ -101,7 +101,7 @@ Before you begin, ensure you have the following installed and accounts set up:
 3.  **Start the backend server:**
       * When you install OpenSSL with Homebrew on macOS, it's often installed in a location like `/usr/local/opt/openssl` (or `/opt/homebrew/opt/openssl@3` on Apple Silicon Macs), which isn't in the default search path for compilers.
 
-1.  **Find the OpenSSL prefix:**
+      *Find the OpenSSL prefix:**
 
     ```bash
     brew --prefix openssl
@@ -109,7 +109,7 @@ Before you begin, ensure you have the following installed and accounts set up:
 
     This command will output the path, for example, `/usr/local/opt/openssl@1.1` or `/opt/homebrew/opt/openssl@3` (the version might differ). Let's call this path `OPENSSL_PREFIX`.
 
-2.  **Set environment variables:**
+   *Set environment variables:**
 
     ```bash
     export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
@@ -118,7 +118,7 @@ Before you begin, ensure you have the following installed and accounts set up:
 
     This will create environment variables to use the openssl.
 
-3.  **Reinstall `node-rdkafka`:**
+   *Reinstall `node-rdkafka`:**
 
     ```bash
     npm uninstall node-rdkafka # If it was previously installed without SSL support
