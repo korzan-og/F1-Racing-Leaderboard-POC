@@ -130,15 +130,18 @@ Before you begin, ensure you have the following installed and accounts set up:
           
         ```bash  
           cd f1_backend
-         ```
-      ```javascript
-    const KAFKA_BROKERS = 'your_confluent_cloud_brokers'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
-    const KAFKA_API_KEY = 'your_confluent_cloud_api_key';
-    const KAFKA_API_SECRET = 'your_confluent_cloud_api_secret';
-    const KAFKA_TOPIC = 'your_kafka_topic'; // The Kafka topic to consume from
-    const KAFKA_GROUP_ID = 'your_kafka_consumer_group_id';
-    ```
-             
+        ```
+        ```javascript
+             const KAFKA_BROKERS = 'your_confluent_cloud_brokers'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
+             const KAFKA_API_KEY = 'your_confluent_cloud_api_key';
+             const KAFKA_API_SECRET = 'your_confluent_cloud_api_secret';
+             const KAFKA_TOPIC = 'your_kafka_topic'; // The Kafka topic to consume from
+             const KAFKA_GROUP_ID = 'your_kafka_consumer_group_id';
+        ```
+   * start the redis server by opening a new terminal and run the following.
+     ```bash
+           redis-server
+     ```      
    * Open another new terminal and run
 
     ```bash
