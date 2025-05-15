@@ -17,7 +17,6 @@ This application provides a live view of an F1 racing leaderboard, along with de
 * [Confluent Cloud (Kafka) Integration](#confluent-cloud-kafka-integration)
 * [Redis Usage](#redis-usage)
 * [Graceful Shutdown](#graceful-shutdown)
-* [Error Handling](#error-handling)
 
 
 ##  Features
@@ -217,37 +216,3 @@ Here are the steps to shutdown the application.
 * Stop running the producer.py, server.js and http-server by clicking cmd+c/ctrl-c to stop these programs.
 * Go to Confluent Cloud and delete the topic "f1.leaderboard.results".
 
-## Error Handling The application includes error handling to provide informative messages and prevent crashes.
-But in case you face issues related to your messages not getting into redis, refer to the following solution.
-
-### Problem: OPENSSL not available at build time error
-
-**Solution:** Set `LDFLAGS` and `CPPFLAGS`
-
-When you install OpenSSL with Homebrew on macOS, it's often installed in a location like `/usr/local/opt/openssl` (or `/opt/homebrew/opt/openssl@3` on Apple Silicon Macs), which isn't in the default search path for compilers.
-
-1.  **Find the OpenSSL prefix:**
-
-    ```bash
-    brew --prefix openssl
-    ```
-
-    This command will output the path, for example, `/usr/local/opt/openssl@1.1` or `/opt/homebrew/opt/openssl@3` (the version might differ). Let's call this path `OPENSSL_PREFIX`.
-
-2.  **Set environment variables:**
-
-    ```bash
-    export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
-    export CPPFLAGS="-I${OPENSSL_PREFIX}/include"
-    ```
-
-    This will create environment variables to use the openssl.
-
-3.  **Reinstall `node-rdkafka`:**
-
-    ```bash
-    npm uninstall node-rdkafka # If it was previously installed without SSL support
-    npm install node-rdkafka
-    ```
-
-    The `npm install` process for `node-rdkafka` should now pick up these environment variables and use them to find the Homebrew-installed OpenSSL libraries and headers, allowing it to compile with SSL support.
