@@ -96,7 +96,7 @@ Before you begin, ensure you have the following installed and accounts set up:
       * Open another new terminal and run
 
     ```bash
-        cd f1-backend
+        cd f1_backend
         node server.js
      ```
 
