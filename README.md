@@ -99,6 +99,33 @@ Before you begin, ensure you have the following installed and accounts set up:
      ```
        * Ensure this terminal window is running continuoulsy. Do not close this window.
 3.  **Start the backend server:**
+      * When you install OpenSSL with Homebrew on macOS, it's often installed in a location like `/usr/local/opt/openssl` (or `/opt/homebrew/opt/openssl@3` on Apple Silicon Macs), which isn't in the default search path for compilers.
+
+1.  **Find the OpenSSL prefix:**
+
+    ```bash
+    brew --prefix openssl
+    ```
+
+    This command will output the path, for example, `/usr/local/opt/openssl@1.1` or `/opt/homebrew/opt/openssl@3` (the version might differ). Let's call this path `OPENSSL_PREFIX`.
+
+2.  **Set environment variables:**
+
+    ```bash
+    export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
+    export CPPFLAGS="-I${OPENSSL_PREFIX}/include"
+    ```
+
+    This will create environment variables to use the openssl.
+
+3.  **Reinstall `node-rdkafka`:**
+
+    ```bash
+    npm uninstall node-rdkafka # If it was previously installed without SSL support
+    npm install node-rdkafka
+    ```
+
+    The `npm install` process for `node-rdkafka` should now pick up these environment variables and use them to find the Homebrew-installed OpenSSL libraries and headers, allowing it to compile with SSL support.
       * Open another new terminal and run
 
     ```bash
@@ -108,7 +135,7 @@ Before you begin, ensure you have the following installed and accounts set up:
       * The server will start at `http://localhost:9000/api/leaderboard`.
     
 
-4.  **Run the frontend:**
+5.  **Run the frontend:**
     * Open another new terminal
     * If you have `http-server` installed globally (`npm install -g http-server`), you can navigate to the frontend directory in your terminal and run `http-server` to serve the frontend at `http://localhost:8080`. Ensure this port is available and not consumed by any other service in your system.
 
