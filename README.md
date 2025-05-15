@@ -62,7 +62,7 @@ Before you begin, ensure you have the following installed and accounts set up:
 2.  **Install backend dependencies:**
 
     ```bash
-    cd f1-backend
+    cd f1_backend
     npm install
     cd ..
     ```
