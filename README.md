@@ -111,8 +111,16 @@ Before you begin, ensure you have the following installed and accounts set up:
     brew --prefix openssl
     ```
 
-    This command will output the path, for example, `/usr/local/opt/openssl@1.1` or `/opt/homebrew/opt/openssl@3` (the version might differ). We will copy this path into variable `OPENSSL_PREFIX`.
+    This command will output the path, for example, `/usr/local/opt/openssl@1.1` or `/opt/homebrew/opt/openssl@3` (the version might differ). We will copy this path into variable `OPENSSL_PREFIX`. If no path is returned, it means that openssl is not installed. In this case, run the following:
 
+       ```bash
+         brew update
+         brew install openssl
+         brew link --force openssl
+         brew --prefix openssl
+       ```
+       Now you should be able to see the path.
+    
      *Set environment variables:**
 
        ```bash
