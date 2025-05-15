@@ -53,6 +53,8 @@ Before you begin, ensure you have the following installed and accounts set up:
   For MacOS, run:
   ```bash
   brew install redis
+  brew services start redis
+  brew services info redis
   ```
 * **Confluent Cloud Account:** You'll need an account on Confluent Cloud with a Kafka cluster set up. [https://www.confluent.io/confluent-cloud/tryfree](https://www.confluent.io/confluent-cloud/tryfree/)
 
