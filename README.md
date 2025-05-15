@@ -82,7 +82,14 @@ Before you begin, ensure you have the following installed and accounts set up:
     * Sign in to Confluent Cloud- (https://confluent.cloud/auth_callback)
     * Create an Environment and a Basic Cluster
     * Create an API key using service account in Accounts and Access(https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/service-accounts/api-keys/overview.html) section(we will use it to authenticate to Confluent Cloud Cluster)
-      <add_confluent_cloud_api_key_instructions>
+      1.  Click the hamburger icon of the Confluent cloud home page > Open Accounts and Access option > Click Service Accounts > +Add service account.
+      2.  Give name and description for the service account. Click Next.
+      3.  Select the environment you have created the cluster in and select Environment Admin for the role assignment > Click Next.
+      4.  Review the settings and create.
+      5.  Click the hamburger icon of the home page > Select API keys > Click +Add API Key > Select Service Account > Choose your existing service account you created previously.
+      6.  Select Kafka Cluster and choose the environment and cluster option and click next
+      7.  Give name and description. Click Next.
+      8.  Download the API Key and Secret and click Complete.
     * Go to topics in the left navigation pane, click topics
     * Create a topic with default configuration and name it "f1.leaderboard.results". Create with Defaults. Skip the data contracts for now.
     * Open the f1_producer.py.
