@@ -48,6 +48,7 @@ Before you begin, ensure you have the following installed and accounts set up:
 
 * **Node.js and npm:** [https://nodejs.org/](https://nodejs.org/)
 * **Python3**: [https://www.python.org/downloads/](https://www.python.org/downloads/)
+* **Pip3 installation**: [https://pip.pypa.io/en/stable/installation/](https://pip.pypa.io/en/stable/installation/)
 * **Redis:**
   For windows installation for redis, click [here](https://redis.io/docs/latest/operate/oss_and_stack/install/archive/install-redis/install-redis-on-windows/#:~:text=To%20install%20Redis%20on%20Windows,and%20higher%20or%20Windows%2011.).
   For MacOS, run:
@@ -114,6 +115,7 @@ Before you begin, ensure you have the following installed and accounts set up:
      ```
        * Ensure this terminal window is running continuoulsy. Do not close this window.
 3.  **Start the backend server:**
+      * Open a new terminal window.
       * When you install OpenSSL with Homebrew on macOS, it's often installed in a location like /usr/local/opt/openssl (or /opt/homebrew/opt/openssl@3 on Apple Silicon Macs), which isn't in the default search path for compilers.
 
       *Find the OpenSSL prefix:**
@@ -155,6 +157,8 @@ Before you begin, ensure you have the following installed and accounts set up:
       ```bash  
       cd f1_backend
       ```
+      Open the server.js file and edit the following lines as per your credentials.
+    
       ```javascript
        const KAFKA_BROKERS = '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
        const KAFKA_API_KEY = '<YOUR_CONFLUENT_CLOUD_API_KEY>';
@@ -175,9 +179,9 @@ Before you begin, ensure you have the following installed and accounts set up:
 
 5.  **Run the frontend:**
     * Open another new terminal
-    * If you have `http-server` installed globally (`npm install -g http-server`), you can navigate to the frontend directory in your terminal and run `http-server` to serve the frontend at `http://localhost:8080`. Ensure this port is available and not consumed by any other service in your system.
+    * Install `http-server` globally using (`npm install -g http-server`), you can navigate to the frontend directory in your terminal and run `http-server` to serve the frontend at `http://localhost:8080`. Ensure this port is available and not consumed by any other service in your system.
 
-##  Backend Setup (`server.js`)
+##  Explanation of Backend Setup (`server.js`)
 
 The backend is built with Node.js and Express. It handles API requests, retrieves data from Redis, and consumes real-time data from Confluent Cloud (Kafka).
 
@@ -196,7 +200,7 @@ The backend is built with Node.js and Express. It handles API requests, retrieve
 * **Graceful Shutdown:** Handles signals to ensure proper disconnection from Confluent Cloud (Kafka) and Redis before exiting.
 * **Error Handling:** Includes error logging and handling for Confluent Cloud (Kafka), Redis, and API requests.
 
-##  Frontend Setup (`racing_leaderboard.html`)
+##  Explanation for Frontend Setup (`racing_leaderboard.html`)
 
    * The frontend consists of two pages that displays the live F1 leaderboard and driver information.
    * The index.html is the home page that asks user a question to choose the driver they would like to support.
