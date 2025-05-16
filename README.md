@@ -95,9 +95,9 @@ Before you begin, ensure you have the following installed and accounts set up:
          ![](api-2.png)
       10.  Give name and description. Click Next.
       11.  Download the API Key and Secret and click Complete.
-    * Go to topics in the left navigation pane, click topics
-    * Create a topic with default configuration and name it "f1.leaderboard.results". Create with Defaults. Skip the data contracts for now.
-    * Open the f1_producer.py file on your laptop and add the Confluent Cloud Kafka bootstrap server endpoint, API Key, and API Secret in the f1_producer.py file as shown below:
+    * Go to the cluster you created before. Go to topics in the left navigation pane, click topics.
+    * Click "Create a topic" and name it "**f1.leaderboard.results**". Create with Defaults. Skip the data contracts for now.
+    * Open the f1_producer.py file in your code editor and add the Confluent Cloud Kafka bootstrap server URL, API Key, and API Secret in the f1_producer.py file as shown below. You can get the boostrap server URL from the "Cluster Settings" in the Cluster overview and the API key and secret from the downloaded file.
 
     ```javascript
     conf = {
@@ -114,9 +114,9 @@ Before you begin, ensure you have the following installed and accounts set up:
         pip3 install confluent-kafka
         python3 f1_producer.py
      ```
-       * Ensure this terminal window is running continuoulsy. Do not close this window.
+       * **Ensure this terminal window is running continuoulsy. Do not close this window.**
 3.  **Start the backend server:**
-      * Open a new terminal window.
+      * **Open a new terminal window.**
       * When you install OpenSSL with Homebrew on macOS, it's often installed in a location like /usr/local/opt/openssl (or /opt/homebrew/opt/openssl@3 on Apple Silicon Macs), which isn't in the default search path for compilers.
 
       *Find the OpenSSL prefix:**
@@ -169,7 +169,7 @@ Before you begin, ensure you have the following installed and accounts set up:
      ```bash
       redis-server
      ```      
-   * Open another new terminal and run:
+   * Open another **new terminal** and run:
 
      ```bash
       cd f1_backend
@@ -179,7 +179,7 @@ Before you begin, ensure you have the following installed and accounts set up:
     
 
 5.  **Run the frontend:**
-    * Open another new terminal
+    * Open another **new terminal**
     * Install `http-server` globally using (`npm install -g http-server`), you can navigate to the frontend directory in your terminal and run `http-server` to serve the frontend at `http://localhost:8080`. Ensure this port is available and not consumed by any other service in your system.
 
 ##  Explanation of Backend Setup (`server.js`)
