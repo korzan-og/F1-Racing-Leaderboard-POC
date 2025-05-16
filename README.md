@@ -165,7 +165,7 @@ Before you begin, ensure you have the following installed and accounts set up:
        const KAFKA_API_KEY = '<YOUR_CONFLUENT_CLOUD_API_KEY>';
        const KAFKA_API_SECRET = '<YOUR_CONFLUENT_CLOUD_API_SECRET>';
       ```
-   * In case you have installed redis as a software, start the redis server by opening a new terminal and run the following. If you have installed using "brew install redis", you can skip this step.
+   * **In case you have installed redis as a software**, start the redis server by opening a new terminal and run the following. If you have installed using "brew install redis", you can skip this step.
      ```bash
       redis-server
      ```      
@@ -181,6 +181,7 @@ Before you begin, ensure you have the following installed and accounts set up:
 5.  **Run the frontend:**
     * Open another **new terminal**
     * Install `http-server` globally using (`npm install -g http-server`), you can navigate to the frontend directory in your terminal and run `http-server` to serve the frontend at `http://localhost:8080`. Ensure this port is available and not consumed by any other service in your system.
+    * Open any browser and type localhost:8080. This will display the UI of this application.
 
 ##  Explanation of Backend Setup (`server.js`)
 
