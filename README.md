@@ -140,7 +140,7 @@ Before you begin, ensure you have the following installed and accounts set up:
        ```bash
         export OPENSSL_PREFIX="</path/of/openssl>"
         export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
-        export CPPFLAGS="-I${OPENSSL_PREFIX}/include"
+        export CPPFLAGS="-I${OPENSSL_PREFIX}/include $CPPFLAGS"
        ```
 
     This will create environment variables to use the openssl.
