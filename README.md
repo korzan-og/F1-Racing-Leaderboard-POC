@@ -101,7 +101,7 @@ Before you begin, ensure you have the following installed and accounts set up:
 
     ```javascript
     conf = {
-    'bootstrap.servers': '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>',  # Replace with your cluster's bootstrap servers
+    'bootstrap.servers': '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>',  # Replace with your cluster's bootstrap server URL
     'sasl.username': '<YOUR_CONFLUENT_CLOUD_API_KEY>',      # Replace with your API key
     'sasl.password': '<YOUR_CONFLUENT_CLOUD_API_SECRET>'   # Replace with your API secret
       }
@@ -115,6 +115,13 @@ Before you begin, ensure you have the following installed and accounts set up:
         python3 f1_producer.py
      ```
        * **Ensure this terminal window is running continuoulsy. Do not close this window.**
+2. Start Redis Server
+
+Launch the redis server in a new terminal. In case you have installed redis as a software, start the redis server by opening a new terminal and run the following. If you have installed using "brew install redis", you can skip this step.
+```bash
+ redis-server
+```
+
 3.  **Start the backend server:**
       * **Open a new terminal window.**
       * When you install OpenSSL with Homebrew on macOS, it's often installed in a location like /usr/local/opt/openssl (or /opt/homebrew/opt/openssl@3 on Apple Silicon Macs), which isn't in the default search path for compilers.
@@ -126,7 +133,7 @@ Before you begin, ensure you have the following installed and accounts set up:
     ```
 
     This command will output the path, for example, /usr/local/opt/openssl@1.1 or /opt/homebrew/opt/openssl@3 (the version might differ). We will copy this path into variable OPENSSL_PREFIX. If no path is returned, it means that openssl is not installed. In this case, run the following:
-
+    
        ```bash
          brew update
          brew install openssl
@@ -152,8 +159,7 @@ Before you begin, ensure you have the following installed and accounts set up:
       npm install node-rdkafka
      ```
 
-    The `npm install` process for `node-rdkafka` should now pick up these environment variables and use them to find the Homebrew-installed OpenSSL libraries and headers, allowing it to compile with SSL support.
-    Make sure to add the Confluent cloud details are addedbelow in the server.js.
+    The 'npm install' process for node-rdkafka should now pick up these environment variables and use them to find the Homebrew-installed OpenSSL libraries and headers, allowing it to compile with SSL support. Make sure to add the Confluent cloud details are added below in the server.js.
           
       ```bash  
       cd f1_backend
@@ -164,15 +170,10 @@ Before you begin, ensure you have the following installed and accounts set up:
        const KAFKA_BROKERS = '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
        const KAFKA_API_KEY = '<YOUR_CONFLUENT_CLOUD_API_KEY>';
        const KAFKA_API_SECRET = '<YOUR_CONFLUENT_CLOUD_API_SECRET>';
-      ```
-   * **In case you have installed redis as a software**, start the redis server by opening a new terminal and run the following. If you have installed using "brew install redis", you can skip this step.
-     ```bash
-      redis-server
-     ```      
+      ```   
    * Open another **new terminal** and run:
 
      ```bash
-      cd f1_backend
       node server.js
      ```
    * The server will start at `http://localhost:9000/api/leaderboard`.
