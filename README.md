@@ -179,7 +179,7 @@ Launch the redis server in a new terminal. In case you have installed redis as a
    * The server will start at `http://localhost:9000/api/leaderboard`.
     
 
-5.  **Run the frontend:**
+4.  **Run the frontend:**
     * Open another **new terminal**
     * Install `http-server` globally using (`npm install -g http-server`), you can navigate to the frontend directory in your terminal and run `http-server` to serve the frontend at `http://localhost:8080`. Ensure this port is available and not consumed by any other service in your system.
     * Open any browser and type localhost:8080. This will display the UI of this application.
