@@ -87,7 +87,7 @@ Before you begin, ensure you have the following installed and accounts set up:
       1.  Click the hamburger icon on the top right of the Confluent cloud home page > Open Accounts and Access option > Click Service Accounts > +Add service account.
       2.  Give name and description for the service account. Click Next.
       3.  Select the environment you have created the cluster in and select Organization Admin for the role assignment > Click Next.
-         ![](sa-1.png)
+         ![](org_permission.png)
       5.  Review the settings and create.
       6.  Click the hamburger icon of the home page > Select API keys > Click +Add API Key > Select Service Account > Choose your existing service account you created previously.
          ![](api-1.png)
