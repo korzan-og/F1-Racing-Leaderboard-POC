@@ -173,9 +173,9 @@ Launch the redis server in a new terminal. In case you have installed redis as a
       ```   
    *  Run:
 
-     ```bash
-      node server.js
-     ```
+      ```bash
+        node server.js
+      ```
    * The server will start at `http://localhost:9000/api/leaderboard`.
     
 
