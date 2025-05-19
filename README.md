@@ -171,7 +171,7 @@ Launch the redis server in a new terminal. In case you have installed redis as a
        const KAFKA_API_KEY = '<YOUR_CONFLUENT_CLOUD_API_KEY>';
        const KAFKA_API_SECRET = '<YOUR_CONFLUENT_CLOUD_API_SECRET>';
       ```   
-   * Open another **new terminal** and run:
+   *  Run:
 
      ```bash
       node server.js
