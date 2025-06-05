@@ -267,5 +267,8 @@ Redis acts as a high-speed, efficient layer between the backend server and the d
 Here are the steps to shutdown the application.
 
 * Stop running the producer.py, server.js and http-server by clicking cmd+c/ctrl-c to stop these programs.
-* Go to Confluent Cloud and delete the topic "f1.leaderboard.results".
+* Go to Confluent Cloud and delete the topic "f1.leaderboard.results" and then delete the cluster and the environment.
+
+## Final result:
+![](result.gif)
 
