@@ -53,10 +53,11 @@ Before you begin, ensure you have the following installed and accounts set up:
 * **Redis installation**:
   <details>
     <summary>Windows Installation</summary>
-    * Install WSL using the following links:
-        https://learn.microsoft.com/en-us/windows/wsl/install
-        https://code.visualstudio.com/docs/remote/wsl-tutorial
-    * Then run the following in the terminal.
+    1. Install WSL using the following links:
+       - [Installing WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install)<br>
+       - [Connecting to WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial)<br>
+        
+    2. Run the following in the terminal.
      
     ```bash
     sudo apt update
@@ -89,7 +90,7 @@ Before you begin, ensure you have the following installed and accounts set up:
     cd F1-Racing-Leaderboard-POC
     ```
 
-3.  **Install backend dependencies:**
+2.  **Install backend dependencies:**
 
     ```bash
     cd f1_backend
@@ -136,7 +137,7 @@ Before you begin, ensure you have the following installed and accounts set up:
         ```
        * **Ensure this terminal window is running continuoulsy. Do not close this window.**
 
-3.  **Start the backend server:**
+2.  **Start the backend server:**
 
     * **Open a new terminal window.**
 
@@ -201,7 +202,7 @@ Before you begin, ensure you have the following installed and accounts set up:
      ```
    * The server will start at `http://localhost:9000/api/leaderboard`.
 
-4.  **Run the frontend:**
+3.  **Run the frontend:**
     * Open another **new terminal**
     * Navigate to fronend directory,
       ```bash
