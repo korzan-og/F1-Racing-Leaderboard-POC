@@ -50,20 +50,23 @@ Before you begin, ensure you have the following installed and accounts set up:
 * **Node.js and npm:** [https://nodejs.org/](https://nodejs.org/)
 * **Python3**: [https://www.python.org/downloads/](https://www.python.org/downloads/)
 * **Pip3 installation**: [https://pip.pypa.io/en/stable/installation/](https://pip.pypa.io/en/stable/installation/)
-* **Redis:**
-  <details>
-     <summary>Windows Installation</summary>
-     * [Install WSL on windows](https://learn.microsoft.com/en-us/windows/wsl/install)
-     * [Open folder with WSL connect](https://code.visualstudio.com/docs/remote/wsl-tutorial)
+<details>
+  <summary>Windows Installation</summary>
   
-     <summary>MACOS installation</summary>
-        For MacOS, run:
-        ```bash
-        brew install redis
-        brew services start redis
-        brew services info redis
-        ```
-  </details>
+  * [Install WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install)
+  * [Open folder with WSL Connect](https://code.visualstudio.com/docs/remote/wsl-tutorial)
+</details>
+
+<details>
+  <summary>macOS Installation</summary>
+  
+  For macOS, run:
+  
+  ```bash
+  brew install redis
+  brew services start redis
+  brew services info redis
+  ```
   
 * **Confluent Cloud Account:** You'll need an account on Confluent Cloud with a Kafka cluster set up. [https://www.confluent.io/confluent-cloud/tryfree](https://www.confluent.io/confluent-cloud/tryfree/)
 
