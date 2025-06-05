@@ -54,8 +54,8 @@ Before you begin, ensure you have the following installed and accounts set up:
   <details>
       <summary>Windows Installation</summary>
         
-      * [Install WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install)
-      * [Open folder with WSL Connect](https://code.visualstudio.com/docs/remote/wsl-tutorial)
+       [Install WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install)
+       [Open folder with WSL Connect](https://code.visualstudio.com/docs/remote/wsl-tutorial)
   </details>
       
   <details>
