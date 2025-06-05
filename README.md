@@ -42,6 +42,29 @@ This application provides a live view of an F1 racing leaderboard, along with de
 * **Data Streaming:**
     * Confluent Cloud
 
+<details>
+  <summary>Click to expand/collapse details (or use the arrow)</summary>
+  
+  This is the content that will be hidden by default.
+  You can add any markdown here:
+  
+  * Lists
+  * Code blocks:
+      ```python
+      print("Hello, world!")
+      ```
+  * Images
+  
+  This section can contain extensive information that you don't want to display immediately.
+</details>
+
+<details>
+  <summary>Another expandable section</summary>
+  
+  This is another block of hidden content.
+  It's useful for FAQs, installation instructions, or optional information.
+</details>
+
 ##  Prerequisites
 
 Before you begin, ensure you have the following installed and accounts set up:
@@ -50,6 +73,7 @@ Before you begin, ensure you have the following installed and accounts set up:
 * **Python3**: [https://www.python.org/downloads/](https://www.python.org/downloads/)
 * **Pip3 installation**: [https://pip.pypa.io/en/stable/installation/](https://pip.pypa.io/en/stable/installation/)
 * **Redis:**
+  
   For windows installation for redis, click [here](https://redis.io/docs/latest/operate/oss_and_stack/install/archive/install-redis/install-redis-on-windows/#:~:text=To%20install%20Redis%20on%20Windows,and%20higher%20or%20Windows%2011.).
   For MacOS, run:
   ```bash
