@@ -54,11 +54,11 @@ Before you begin, ensure you have the following installed and accounts set up:
    <details>
        <summary>Windows Installation</summary>
        1. Install WSL using the following link:
-           - <a href="https://learn.microsoft.com/en-us/windows/wsl/install">Installing WSL on Windows</a>
-           (Optional: For connecting VS Code to WSL, refer to <a href="https://code.visualstudio.com/docs/remote/wsl-tutorial">Connecting to WSL</a>)
-   
+          <a href="https://learn.microsoft.com/en-us/windows/wsl/install">Installing WSL on Windows</a>
+          For connecting VS Code to WSL, refer to <a href="https://code.visualstudio.com/docs/remote/wsl-tutorial">Connecting to WSL</a>
+
        2. Once WSL is installed, open your WSL terminal (e.g., Ubuntu) and run the following commands:
-   
+
           ```bash
           sudo apt update
           sudo apt install redis-server
