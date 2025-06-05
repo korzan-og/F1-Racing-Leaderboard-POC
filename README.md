@@ -67,7 +67,8 @@ Before you begin, ensure you have the following installed and accounts set up:
   brew services start redis
   brew services info redis
   ```
-  
+</details>
+
 * **Confluent Cloud Account:** You'll need an account on Confluent Cloud with a Kafka cluster set up. [https://www.confluent.io/confluent-cloud/tryfree](https://www.confluent.io/confluent-cloud/tryfree/)
 
 ##  Installation
