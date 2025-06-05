@@ -111,59 +111,60 @@ Before you begin, ensure you have the following installed and accounts set up:
     * Click "Create a topic" and name it "**f1.leaderboard.results**". Create with Defaults. Skip the data contracts for now.
     * Open the f1_producer.py file in your code editor and add the Confluent Cloud Kafka bootstrap server URL, API Key, and API Secret in the f1_producer.py file as shown below. You can get the boostrap server URL from the "Cluster Settings" in the Cluster overview and the API key and secret from the downloaded file.
 
-    ```javascript
-    conf = {
-    'bootstrap.servers': '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>',  # Replace with your cluster's bootstrap server URL
-    'sasl.username': '<YOUR_CONFLUENT_CLOUD_API_KEY>',      # Replace with your API key
-    'sasl.password': '<YOUR_CONFLUENT_CLOUD_API_SECRET>'   # Replace with your API secret
-      }
-    ```
+       ```javascript
+          conf = {
+          'bootstrap.servers': '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>',  # Replace with your cluster's bootstrap server URL
+          'sasl.username': '<YOUR_CONFLUENT_CLOUD_API_KEY>',      # Replace with your API key
+          'sasl.password': '<YOUR_CONFLUENT_CLOUD_API_SECRET>'   # Replace with your API secret
+            }
+       ```
 
        * Run the following:
-     ```bash
-        python3 -m venv venv
-        source venv/bin/activate
-        pip3 install confluent_kafka
-        python3 f1_producer.py
-     ```
+        ```bash
+           python3 -m venv venv
+           source venv/bin/activate
+           pip3 install confluent_kafka
+           python3 f1_producer.py
+        ```
        * **Ensure this terminal window is running continuoulsy. Do not close this window.**
+
 2. Start Redis Server
 
 Launch the redis server in a new terminal. In case you have installed redis as a software, start the redis server by opening a new terminal and run the following. If you have installed using "brew install redis", you can skip this step.
-   ```bash
-    redis-server
-   ```
+         ```bash
+          redis-server
+         ```
 
 3.  **Start the backend server:**
       * **Open a new terminal window.**
    
-   <details>
-      <summary>OpenSSL For Linux/MacOS: </summary>
-      * When you install OpenSSL with Homebrew on macOS, it's often installed in a location like /usr/local/opt/openssl (or /opt/homebrew/opt/openssl@3 on Apple Silicon Macs), which isn't in the default search path for compilers.
+         <details>
+            <summary>OpenSSL For Linux/MacOS: </summary>
+            * When you install OpenSSL with Homebrew on macOS, it's often installed in a location like /usr/local/opt/openssl (or /opt/homebrew/opt/openssl@3 on Apple Silicon Macs), which isn't in the default search path for compilers.
+      
+            *Find the OpenSSL prefix:**
+      
+          ```bash
+          brew --prefix openssl
+          ```
 
-      *Find the OpenSSL prefix:**
-
-    ```bash
-    brew --prefix openssl
-    ```
-
-    This command will output the path, for example, /usr/local/opt/openssl@1.1 or /opt/homebrew/opt/openssl@3 (the version might differ). We will copy this path into variable OPENSSL_PREFIX. If no path is returned, it means that openssl is not installed. In this case, run the following:
-    
-    ```bash
-     brew update
-     brew install openssl
-     brew link --force openssl
-     brew --prefix openssl
-    ```
-   Now you should be able to see the path.
-    
-     *Set environment variables:**
-
-      ```bash
-       export OPENSSL_PREFIX="</path/of/openssl>"
-       export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
-       export CPPFLAGS="-I${OPENSSL_PREFIX}/include $CPPFLAGS"
-      ```
+          This command will output the path, for example, /usr/local/opt/openssl@1.1 or /opt/homebrew/opt/openssl@3 (the version might differ). We will copy this path into variable OPENSSL_PREFIX. If no path is returned, it means that openssl is not installed. In this case, run the following:
+          
+          ```bash
+           brew update
+           brew install openssl
+           brew link --force openssl
+           brew --prefix openssl
+          ```
+         Now you should be able to see the path.
+          
+           *Set environment variables:**
+      
+            ```bash
+             export OPENSSL_PREFIX="</path/of/openssl>"
+             export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
+             export CPPFLAGS="-I${OPENSSL_PREFIX}/include $CPPFLAGS"
+            ```
 
     This will create environment variables to use the openssl.
    
@@ -179,27 +180,29 @@ Launch the redis server in a new terminal. In case you have installed redis as a
 
    <details>
       <summary>OpenSSL For Windows:</summary>
-      ```bash
-        sudo apt update
-        sudo apt install libssl-dev -y
-      ```
+      
+         ```bash
+          sudo apt update
+          sudo apt install libssl-dev -y
+         ```
       
    </details>
-      ```bash  
-      cd f1_backend
-      ```
+      
+         ```bash  
+         cd f1_backend
+         ```
       Open the server.js file and edit the following lines as per your credentials.
     
-      ```javascript
-       const KAFKA_BROKERS = '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
-       const KAFKA_API_KEY = '<YOUR_CONFLUENT_CLOUD_API_KEY>';
-       const KAFKA_API_SECRET = '<YOUR_CONFLUENT_CLOUD_API_SECRET>';
-      ```   
+         ```javascript
+          const KAFKA_BROKERS = '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
+          const KAFKA_API_KEY = '<YOUR_CONFLUENT_CLOUD_API_KEY>';
+          const KAFKA_API_SECRET = '<YOUR_CONFLUENT_CLOUD_API_SECRET>';
+         ```   
    *  Run:
 
-      ```bash
-        node server.js
-      ```
+        ```bash
+          node server.js
+        ```
    * The server will start at `http://localhost:9000/api/leaderboard`.
     
 
