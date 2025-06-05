@@ -53,9 +53,12 @@ Before you begin, ensure you have the following installed and accounts set up:
 * **Redis installation**:
   <details>
     <summary>Windows Installation</summary>
-    
-    * [Install WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install)
-    * [Open folder with WSL Connect](https://code.visualstudio.com/docs/remote/wsl-tutorial)
+       ```bash
+         sudo apt update
+         sudo apt install redis-server
+         sudo systemctl enable redis-server.service
+         sudo systemctl start redis-server
+       ```
   </details>
   <details>
     <summary>macOS Installation</summary>
