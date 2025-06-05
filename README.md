@@ -130,12 +130,15 @@ Before you begin, ensure you have the following installed and accounts set up:
 2. Start Redis Server
 
 Launch the redis server in a new terminal. In case you have installed redis as a software, start the redis server by opening a new terminal and run the following. If you have installed using "brew install redis", you can skip this step.
-```bash
- redis-server
-```
+   ```bash
+    redis-server
+   ```
 
 3.  **Start the backend server:**
       * **Open a new terminal window.**
+   
+   <details>
+      <summary>OpenSSL For Linux/MacOS: </summary>
       * When you install OpenSSL with Homebrew on macOS, it's often installed in a location like /usr/local/opt/openssl (or /opt/homebrew/opt/openssl@3 on Apple Silicon Macs), which isn't in the default search path for compilers.
 
       *Find the OpenSSL prefix:**
@@ -146,24 +149,24 @@ Launch the redis server in a new terminal. In case you have installed redis as a
 
     This command will output the path, for example, /usr/local/opt/openssl@1.1 or /opt/homebrew/opt/openssl@3 (the version might differ). We will copy this path into variable OPENSSL_PREFIX. If no path is returned, it means that openssl is not installed. In this case, run the following:
     
-       ```bash
-         brew update
-         brew install openssl
-         brew link --force openssl
-         brew --prefix openssl
-       ```
-       Now you should be able to see the path.
+    ```bash
+     brew update
+     brew install openssl
+     brew link --force openssl
+     brew --prefix openssl
+    ```
+   Now you should be able to see the path.
     
      *Set environment variables:**
 
-       ```bash
-        export OPENSSL_PREFIX="</path/of/openssl>"
-        export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
-        export CPPFLAGS="-I${OPENSSL_PREFIX}/include $CPPFLAGS"
-       ```
+      ```bash
+       export OPENSSL_PREFIX="</path/of/openssl>"
+       export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
+       export CPPFLAGS="-I${OPENSSL_PREFIX}/include $CPPFLAGS"
+      ```
 
     This will create environment variables to use the openssl.
-
+   
     *Reinstall `node-rdkafka`:**
 
      ```bash
@@ -172,7 +175,16 @@ Launch the redis server in a new terminal. In case you have installed redis as a
      ```
 
     The 'npm install' process for node-rdkafka should now pick up these environment variables and use them to find the Homebrew-installed OpenSSL libraries and headers, allowing it to compile with SSL support. Make sure to add the Confluent cloud details are added below in the server.js.
-          
+   </details>
+
+   <details>
+      <summary>OpenSSL For Windows:</summary>
+      ```bash
+        sudo apt update
+        sudo apt install libssl-dev -y
+      ```
+      
+   </details>
       ```bash  
       cd f1_backend
       ```
@@ -193,8 +205,20 @@ Launch the redis server in a new terminal. In case you have installed redis as a
 
 4.  **Run the frontend:**
     * Open another **new terminal**
-    * Install `http-server` globally using (`npm install -g http-server`), you can navigate to the frontend directory in your terminal and run `http-server` to serve the frontend at `http://localhost:8080`. Ensure this port is available and not consumed by any other service in your system.
-    * Open any browser and type localhost:8080. This will display the UI of this application.
+    * Navigate to fronend directory,
+      ```bash
+        cd f1-frontend
+      ```
+    * Install `http-server` globally using,
+      ```bash
+        npm install -g http-server
+      ```
+    * In the same terminal, run
+      ```bash
+        http-server
+      ```
+    * This will display under which port the frontend is serving. _Ensure this port is available and not consumed by any other service in your system._
+    * Open any browser and type localhost:<port>. This will display the UI of this application.
 
 ##  Explanation of Backend Setup (`server.js`)
 
