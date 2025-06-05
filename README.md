@@ -52,19 +52,22 @@ Before you begin, ensure you have the following installed and accounts set up:
 * **Pip3 installation**: [https://pip.pypa.io/en/stable/installation/](https://pip.pypa.io/en/stable/installation/)
 * **Redis installation**:
    <details>
-       <summary>Windows Installation</summary>
-          1. Install WSL using the following link:<br>
-             <a href="https://learn.microsoft.com/en-us/windows/wsl/install">Installing WSL on Windows</a><br>
-             For connecting VS Code to WSL, refer to <a href="https://code.visualstudio.com/docs/remote/wsl-tutorial">Connecting to WSL</a><br>
+     <summary>Windows Installation</summary>
    
-          2. Once WSL is installed, open your WSL terminal (e.g., Ubuntu) and run the following commands:<br>
+     1. **Install WSL** using the following link:  
+        [Installing WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install)  
+        For connecting VS Code to WSL, refer to  
+        [Connecting to WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial)
    
-             ```bash
-             sudo apt update
-             sudo apt install redis-server
-             sudo systemctl enable redis-server.service
-             sudo systemctl start redis-server
-             ```
+     2. **Once WSL is installed**, open your WSL terminal (e.g., Ubuntu) and run the following commands:
+   
+        ```bash
+        sudo apt update
+        sudo apt install redis-server
+        sudo systemctl enable redis-server.service
+        sudo systemctl start redis-server
+        ```
+   
    </details>
   <details>
     <summary>macOS Installation</summary>
