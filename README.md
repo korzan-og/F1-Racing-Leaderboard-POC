@@ -53,7 +53,11 @@ Before you begin, ensure you have the following installed and accounts set up:
 * **Redis installation**:
   <details>
     <summary>Windows Installation</summary>
-       
+    * Install WSL using the following links:
+        https://learn.microsoft.com/en-us/windows/wsl/install
+        https://code.visualstudio.com/docs/remote/wsl-tutorial
+    * Then run the following in the terminal.
+     
     ```bash
     sudo apt update
     sudo apt install redis-server
