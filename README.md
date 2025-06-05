@@ -56,10 +56,10 @@ Before you begin, ensure you have the following installed and accounts set up:
    
      1. **Install WSL** using the following link:  
         [Installing WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install)  
-        For connecting VS Code to WSL, refer to  
+     2. **For connecting VS Code to WSL**, refer to  
         [Connecting to WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial)
    
-     2. **Once WSL is installed**, open your WSL terminal (e.g., Ubuntu) and run the following commands:
+     3. **Once WSL is installed**, open your WSL terminal (e.g., Ubuntu) and run the following commands:
    
         ```bash
         sudo apt update
