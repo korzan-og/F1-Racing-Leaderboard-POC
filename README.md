@@ -65,6 +65,7 @@ Before you begin, ensure you have the following installed and accounts set up:
     sudo systemctl enable redis-server.service
     sudo systemctl start redis-server
     ```
+    
 </details>
   <details>
     <summary>macOS Installation</summary>
