@@ -107,15 +107,15 @@ Before you begin, ensure you have the following installed and accounts set up:
       
     * Sign in to Confluent Cloud- (https://confluent.cloud/auth_callback)
     * Create an Environment and a Basic Cluster
-    * Create an API key using this link- https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/service-accounts/api-keys/manage-api-keys.html#add-an-api-key.
-         a. Navigate to the hamburger icon on top right corner and select API Keys.
-         b. Click "Add API Key".
-         c. Select "User Account" and click "Next".
-         d. Select Kafka Cluster and below this, choose the Environment and Cluster you will be using and Click "Next".
-         e. Add a name and a description and click "Next".
-         f. Click "Download API Key" at the bottom beside Complete button and once downloaded, click "Complete"
-       * Go to the cluster you created before. Go to topics in the left navigation pane, click topics.
-    * Click "Create a topic" and name it "**f1.leaderboard.results**". Create with Defaults. Skip the data contracts for now.
+    * Create an API key using this link- (https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/service-accounts/api-keys/manage-api-keys.html#add-an-api-key).<br>
+         a. Navigate to the hamburger icon on top right corner and select API Keys.<br>
+         b. Click "Add API Key".<br>
+         c. Select "User Account" and click "Next".<br>
+         d. Select Kafka Cluster and below this, choose the Environment and Cluster you will be using and Click "Next".<br>
+         e. Add a name and a description and click "Next".<br>
+         f. Click "Download API Key" at the bottom beside Complete button and once downloaded, click "Complete"<br>
+       * Go to the cluster you created before. Go to topics in the left navigation pane, click topics.<br>
+    * Click "Create a topic" and name it "**f1.leaderboard.results**". Create with Defaults. Skip the data contracts for now.<br>
     * Open the f1_producer.py file in your code editor and add the Confluent Cloud Kafka bootstrap server URL, API Key, and API Secret in the f1_producer.py file as shown below. You can get the boostrap server URL from the "Cluster Settings" in the Cluster overview and the API key and secret from the downloaded file.
 
        ```javascript
