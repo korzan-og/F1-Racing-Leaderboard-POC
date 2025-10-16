@@ -112,6 +112,7 @@ Before you begin, ensure you have the following installed and accounts set up:
          b. Click "Add API Key".<br>
          c. Select "User Account" and click "Next".<br>
          d. Select Kafka Cluster and below this, choose the Environment and Cluster you will be using and Click "Next".<br>
+         ![](apikey_permission.png)
          e. Add a name and a description and click "Next".<br>
          f. Click "Download API Key" at the bottom beside Complete button and once downloaded, click "Complete"<br>
     * Go to the cluster you created before. Go to topics in the left navigation pane, click topics.<br>
