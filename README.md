@@ -107,7 +107,7 @@ Before you begin, ensure you have the following installed and accounts set up:
       
     * [Sign in to Confluent Cloud](https://confluent.cloud/auth_callback)
     * Create an Environment and a Basic Cluster
-    * [Create an API key using this link](https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/service-accounts/api-keys/manage-api-keys.html#add-an-api-key).<br>
+    * [Create an API key](https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/service-accounts/api-keys/manage-api-keys.html#add-an-api-key).<br>
          a. Navigate to the hamburger icon on top right corner and select API Keys.<br>
          b. Click "Add API Key".<br>
          c. Select "User Account" and click "Next".<br>
