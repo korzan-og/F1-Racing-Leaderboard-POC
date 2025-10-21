@@ -131,7 +131,6 @@ Before you begin, ensure you have the following installed and accounts set up:
 
        * Run the following:
         ```bash
-           python3 -m venv venv
            source venv/bin/activate
            pip3 install confluent_kafka
            python3 f1_producer.py
