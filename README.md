@@ -96,6 +96,8 @@ Before you begin, ensure you have the following installed and accounts set up:
 2.  **Install backend dependencies:**
 
     ```bash
+    python3 -m venv venv
+    source venv/bin/activate
     cd f1_backend
     npm install
     cd ..
