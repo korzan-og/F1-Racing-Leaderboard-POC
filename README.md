@@ -45,41 +45,11 @@ This application provides a live view of an F1 racing leaderboard, along with de
 
 ##  Prerequisites
 
-Before you begin, ensure you have the following installed and accounts set up:
+Before you begin, ensure you are connected to the EC2 machine. If you are not, you can connect to the machine by typing below command:
 
-* **Node.js and npm:** [https://nodejs.org/](https://nodejs.org/)
-* **Python3**: [https://www.python.org/downloads/](https://www.python.org/downloads/)
-* **Pip3 installation**: [https://pip.pypa.io/en/stable/installation/](https://pip.pypa.io/en/stable/installation/)
-* **Redis installation**:
-   <details>
-     <summary>Windows Installation</summary>
-   
-     1. **Install WSL** using the following link:  
-        [Installing WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install)  
-     2. **For connecting VS Code to WSL**, refer to  
-        [Connecting to WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial)
-   
-     3. **Once WSL is installed**, open your WSL terminal (e.g., Ubuntu) and run the following commands:
-   
-        ```bash
-        sudo apt update
-        sudo apt install redis-server
-        sudo systemctl enable redis-server.service
-        sudo systemctl start redis-server
-        ```
-   
-   </details>
-  <details>
-    <summary>macOS Installation</summary>
-    
-    For macOS, run:
-    
-    ```bash
-    brew install redis
-    brew services start redis
-    brew services info redis
-    ```
-  </details>
+```bash
+ssh -i ./<name of the pem file>.pem ubuntu@<PublicDNS>
+```
 
 * **Confluent Cloud Account:** You'll need an account on Confluent Cloud with a Kafka cluster set up. [https://www.confluent.io/confluent-cloud/tryfree](https://www.confluent.io/confluent-cloud/tryfree/)
 
@@ -109,37 +79,46 @@ Before you begin, ensure you have the following installed and accounts set up:
       
     * [Sign in to Confluent Cloud](https://confluent.cloud/auth_callback)
     * Create an Environment and a Basic Cluster
+      * Select AWS as the Cloud Provider
+      * For this exercise the region is not important. You can select any region you want!
+      * When Payment information is needed, enter the Promo code provided and click Apply!
+
     * [Create an API key](https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/service-accounts/api-keys/manage-api-keys.html#add-an-api-key).<br>
-         a. Navigate to the hamburger icon on top right corner and select API Keys.<br>
-         b. Click "Add API Key".<br>
-         c. Select "User Account" and click "Next".<br>
-         d. Select Kafka Cluster and below this, choose the Environment and Cluster you will be using and Click "Next".<br>
+         a. Navigate to the hamburger icon on top right corner and select **API Keys**.<br>
+         b. Click **Add API Key**.<br>
+         c. Select "My Account" and click "Next".<br>
+         d. Select **Kafka Cluster** and below this, choose the Environment and Cluster you will be using and Click "Next".<br>
          ![](apikey_permission.png)
          e. Add a name and a description and click "Next".<br>
          f. Click "Download API Key" at the bottom beside Complete button and once downloaded, click "Complete"<br>
     * Go to the cluster you created before. Go to topics in the left navigation pane, click topics.<br>
     * Click "Create a topic" and name it "**f1.leaderboard.results**". Create with Defaults. Skip the data contracts for now.<br>
-    * Open the f1_producer.py file in your code editor and add the Confluent Cloud Kafka bootstrap server URL, API Key, and API Secret in the f1_producer.py file as shown below. You can get the boostrap server URL from the "Cluster Settings" in the Cluster overview and the API key and secret from the downloaded file.
+        
+    * Modify the below scripts in your code editor and add the Confluent Cloud Kafka bootstrap server URL, API Key, and API Secret.
+    Then run these commands on EC2 Machines. You can get the boostrap server URL from the "Cluster Settings" in the Cluster overview and the API key and secret from the downloaded file.
 
-       ```javascript
-          conf = {
-          'bootstrap.servers': '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>',  # Replace with your cluster's bootstrap server URL
-          'sasl.username': '<YOUR_CONFLUENT_CLOUD_API_KEY>',      # Replace with your API key
-          'sasl.password': '<YOUR_CONFLUENT_CLOUD_API_SECRET>'   # Replace with your API secret
-            }
-       ```
+      ```bash
+          export CONFLUENT_CLOUD_CLUSTER_URL=<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>
+          export CONFLUENT_CLOUD_API_KEY=<YOUR_CONFLUENT_CLOUD_API_KEY>
+          export CONFLUENT_CLOUD_API_SECRET=<YOUR_CONFLUENT_CLOUD_API_SECRET>
+      ```
 
-       * Run the following:
-        ```bash
-           source venv/bin/activate
-           pip3 install confluent_kafka
-           python3 f1_producer.py
-        ```
+    * Run the following:
+      ```bash
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install confluent_kafka
+          python3 f1_producer.py
+      ```
        * **Ensure this terminal window is running continuoulsy. Do not close this window.**
 
 2.  **Start the backend server:**
 
-    * **Open a new terminal window.**
+    * **Open a new terminal window and SSH into the EC2 Machine.**
+
+    ```bash
+        ssh -i ./<name of the pem file>.pem ubuntu@<PublicDNS>
+    ```
 
     <details>
       <summary>OpenSSL For Linux/macOS:</summary>

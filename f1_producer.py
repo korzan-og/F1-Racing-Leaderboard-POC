@@ -2,14 +2,24 @@ import json
 import time
 from confluent_kafka import Producer
 import random
+import os
+
+# Confluent Cloud Configuration
+# conf = {
+#     'bootstrap.servers': '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>',  # Replace with your cluster's bootstrap servers
+#     'security.protocol': 'SASL_SSL',
+#     'sasl.mechanism': 'PLAIN',
+#     'sasl.username': '<YOUR_CONFLUENT_CLOUD_API_KEY>',      # Replace with your API key
+#     'sasl.password': '<YOUR_CONFLUENT_CLOUD_API_SECRET>'   # Replace with your API secret
+# }
 
 # Confluent Cloud Configuration
 conf = {
-    'bootstrap.servers': '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>',  # Replace with your cluster's bootstrap servers
+    'bootstrap.servers': os.environ["CONFLUENT_CLOUD_CLUSTER_URL"],  # Replace with your cluster's bootstrap servers
     'security.protocol': 'SASL_SSL',
     'sasl.mechanism': 'PLAIN',
-    'sasl.username': '<YOUR_CONFLUENT_CLOUD_API_KEY>',      # Replace with your API key
-    'sasl.password': '<YOUR_CONFLUENT_CLOUD_API_SECRET>'   # Replace with your API secret
+    'sasl.username': os.environ["CONFLUENT_CLOUD_API_KEY"],      # Replace with your API key
+    'sasl.password': os.environ["CONFLUENT_CLOUD_API_SECRET"]   # Replace with your API secret
 }
 
 producer = Producer(conf)
