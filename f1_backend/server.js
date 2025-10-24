@@ -8,6 +8,7 @@ const cors = require('cors');
 const Redis = require('ioredis');
 const Kafka = require('node-rdkafka'); // Import node-rdkafka
 
+
 const app = express();
 const PORT = 9000;
 
@@ -17,9 +18,9 @@ const REDIS_LEADERBOARD_KEY = 'f1_leaderboard_data';
 
 // --- Kafka Configuration for Confluent Kafka ---
 // ** IMPORTANT: Replace placeholders with your Confluent Cloud credentials and broker list **
-const KAFKA_BROKERS = '<CONFLUENT_CLOUD_CLUSTER_URL>'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
-const KAFKA_API_KEY =  '<CONFLUENT_CLOUD_API_KEY';
-const KAFKA_API_SECRET = '<CONFLUENT_CLOUD_API_SECRET>';
+const KAFKA_BROKERS = process.env.CONFLUENT_CLOUD_CLUSTER_URL; //'<CONFLUENT_CLOUD_CLUSTER_URL>'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
+const KAFKA_API_KEY =  process.env.CONFLUENT_CLOUD_API_KEY; // '<CONFLUENT_CLOUD_API_KEY';
+const KAFKA_API_SECRET = process.env.CONFLUENT_CLOUD_API_SECRET; // '<CONFLUENT_CLOUD_API_SECRET>';
 
 const KAFKA_TOPIC = 'f1.leaderboard.results'; // The Kafka topic to consume from
 const KAFKA_GROUP_ID = 'f1-leaderboard-consumer-group';

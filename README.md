@@ -94,7 +94,7 @@ ssh -i ./<name of the pem file>.pem ubuntu@<PublicDNS>
     * Go to the cluster you created before. Go to topics in the left navigation pane, click topics.<br>
     * Click "Create a topic" and name it "**f1.leaderboard.results**". Create with Defaults. Skip the data contracts for now.<br>
         
-    * Modify the below scripts in your code editor and add the Confluent Cloud Kafka bootstrap server URL, API Key, and API Secret.
+    * Modify the below scripts in your code editor and add the Confluent Cloud Kafka bootstrap server URL, API Key, and API Secret. Keep this script because you need to use it again in the upcoming tasks.
     Then run these commands on EC2 Machines. You can get the boostrap server URL from the "Cluster Settings" in the Cluster overview and the API key and secret from the downloaded file.
 
       ```bash
@@ -120,69 +120,39 @@ ssh -i ./<name of the pem file>.pem ubuntu@<PublicDNS>
         ssh -i ./<name of the pem file>.pem ubuntu@<PublicDNS>
     ```
 
-    <details>
-      <summary>OpenSSL For Linux/macOS:</summary>
-      
-      * When you install OpenSSL with Homebrew on macOS, it's often installed in a location like `/usr/local/opt/openssl` (or `/opt/homebrew/opt/openssl@3` on Apple Silicon Macs), which isn't in the default search path for compilers.
-      
-      * **Find the OpenSSL prefix:**
-          ```bash
-          brew --prefix openssl
-          ```
-
-          This command will output the path, for example, `/usr/local/opt/openssl@1.1` or `/opt/homebrew/opt/openssl@3` (the version might differ). We will copy this path into variable `OPENSSL_PREFIX`. If no path is returned, it means that OpenSSL is not installed. In this case, run the following:
-
-          ```bash
-          brew update
-          brew install openssl
-          brew link --force openssl
-          brew --prefix openssl
-          ```
-          Now you should be able to see the path.
-      
-      * **Set environment variables:**
-          ```bash
-          export OPENSSL_PREFIX="</path/of/openssl>" # REPLACE with the actual path from 'brew --prefix openssl'
-          export LDFLAGS="-L${OPENSSL_PREFIX}/lib"
-          export CPPFLAGS="-I${OPENSSL_PREFIX}/include $CPPFLAGS"
-          ```
-          This will create environment variables to use the OpenSSL.
-      
-      * **Reinstall `node-rdkafka`:**
-          ```bash
-          npm uninstall node-rdkafka # If it was previously installed without SSL support
-          npm install node-rdkafka
-          ```
-          The 'npm install' process for `node-rdkafka` should now pick up these environment variables and use them to find the Homebrew-installed OpenSSL libraries and headers, allowing it to compile with SSL support. Make sure to add the Confluent cloud details are added below in the `server.js`.
-    </details>
-
-    <details>
-      <summary>OpenSSL For Windows:</summary>
-      
-      ```bash
-      sudo apt update
-      sudo apt install libssl-dev -y
-      ```
-    </details>
+     * **Change directory to F1 Folder**
 
     ```bash
-    cd f1_backend
+       cd F1-Racing-Leaderboard-POC
     ```
-    Open the `server.js` file and edit the following lines as per your credentials.
 
-    ```javascript
-    const KAFKA_BROKERS = '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
-    const KAFKA_API_KEY = '<YOUR_CONFLUENT_CLOUD_API_KEY>';
-    const KAFKA_API_SECRET = '<YOUR_CONFLUENT_CLOUD_API_SECRET>';
-    ```
+    * Run previously modified commands which includes Confluent Cloud Kafka bootstrap server URL, API Key, and API Secret.
+
+     ```bash
+          export CONFLUENT_CLOUD_CLUSTER_URL=<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>
+          export CONFLUENT_CLOUD_API_KEY=<YOUR_CONFLUENT_CLOUD_API_KEY>
+          export CONFLUENT_CLOUD_API_SECRET=<YOUR_CONFLUENT_CLOUD_API_SECRET>
+      ```
+
    * Run:
      ```bash
      node server.js
      ```
-   * The server will start at `http://localhost:9000/api/leaderboard`.
+   * The server will start at `http://<YOUR PUBLIC DNS>:9000/api/leaderboard`.
 
 3.  **Run the frontend:**
-    * Open another **new terminal**
+    * **Open a new terminal window and SSH into the EC2 Machine.**
+
+    ```bash
+        ssh -i ./<name of the pem file>.pem ubuntu@<PublicDNS>
+    ```
+
+    * **Change directory to F1 Folder**
+
+    ```bash
+       cd F1-Racing-Leaderboard-POC
+    ```
+
     * Navigate to fronend directory,
       ```bash
         cd f1-frontend
@@ -195,8 +165,9 @@ ssh -i ./<name of the pem file>.pem ubuntu@<PublicDNS>
       ```bash
         http-server
       ```
-    * This will display under which port the frontend is serving. _Ensure this port is available and not consumed by any other service in your system._
-    * Open any browser and type localhost:8080. (Double check in your terminal, which port the frontend is exposed to). This will display the UI of this application.
+    * This will display under which port the frontend is serving but these are internal IPs. 
+
+    * Open any browser and type <YOUR PUBLIC DNS>:8080. (Double check in your public dns address). This will display the UI of this application.
 
 ##  Explanation of Backend Setup (`server.js`)
 
@@ -251,12 +222,26 @@ Redis acts as a high-speed, efficient layer between the backend server and the d
 * **Key:** The leaderboard data is stored under the key `f1_leaderboard_data`.
 * **Data Format:** The data is stored as a JSON string.
 
+
+## SUBMISSION
+* After the race is complete and you see the below message, take a screen shot of the result.
+![](racecomplete)
+
+Your screen shot must include all the leaderboard, the time and Change driver button at the end. For full points you need a similar screen shot as below.
+
+![](result_preview.png)
+
+If you missclick on close, you can restart by changing your driver and take a screenshot like that
+
+**You have to submit that screen shot to the below link**
+[Submit your F1 Leaderboard Data](https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/service-accounts/api-keys/manage-api-keys.html#add-an-api-key)
+
+
 ## Graceful Shutdown
 Here are the steps to shutdown the application.
 
 * Stop running the producer.py, server.js and http-server by clicking cmd+c/ctrl-c to stop these programs.
 * Go to Confluent Cloud and delete the topic "f1.leaderboard.results" and then delete the cluster and the environment.
 
-## Final result:
-![](result.gif)
+
 
