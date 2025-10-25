@@ -94,8 +94,8 @@ ssh -i ./<name of the pem file>.pem ubuntu@<PublicDNS>
     * Go to the cluster you created before. Go to topics in the left navigation pane, click topics.<br>
     * Click "Create a topic" and name it "**f1.leaderboard.results**". Create with Defaults. Skip the data contracts for now.<br>
         
-    * Modify the below scripts in your code editor and add the Confluent Cloud Kafka bootstrap server URL, API Key, and API Secret. Keep this script because you need to use it again in the upcoming tasks.
-    Then run these commands on EC2 Machines. You can get the boostrap server URL from the "Cluster Settings" in the Cluster overview and the API key and secret from the downloaded file.
+    * Modify the below scripts in your code editor and add the Confluent Cloud Kafka bootstrap server URL, API Key, and API Secret. 
+    Then run these commands on EC2 Machine. You can get the boostrap server URL from the "Cluster Settings" in the Cluster overview and the API key and secret from the downloaded file.
 
       ```bash
           export CONFLUENT_CLOUD_CLUSTER_URL=<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>
@@ -126,12 +126,19 @@ ssh -i ./<name of the pem file>.pem ubuntu@<PublicDNS>
        cd F1-Racing-Leaderboard-POC
     ```
 
-    * Run previously modified commands which includes Confluent Cloud Kafka bootstrap server URL, API Key, and API Secret.
+    * **Change directory to f1_backend Folder**
 
-     ```bash
-          export CONFLUENT_CLOUD_CLUSTER_URL=<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>
-          export CONFLUENT_CLOUD_API_KEY=<YOUR_CONFLUENT_CLOUD_API_KEY>
-          export CONFLUENT_CLOUD_API_SECRET=<YOUR_CONFLUENT_CLOUD_API_SECRET>
+    ```bash
+       cd f1_backend
+    ```
+
+    * Open the server.js file and edit the following lines as per your credentials.
+
+
+     ```javascript
+        const KAFKA_BROKERS = '<YOUR_CONFLUENT_CLOUD_CLUSTER_URL>'; // e.g., 'pkc-xxxx.region.provider.confluent.cloud:9092'
+        const KAFKA_API_KEY = '<YOUR_CONFLUENT_CLOUD_API_KEY>';
+        const KAFKA_API_SECRET = '<YOUR_CONFLUENT_CLOUD_API_SECRET>';
       ```
 
    * Run:
