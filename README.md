@@ -56,7 +56,7 @@ ssh -i ./<name of the pem file>.pem ubuntu@<PublicDNS>
 ##  Installation
 
 1.  **Clone the repository:**
-   Open a code editor such as VS code. Open a terminal and run the following.
+   Run below command to clone the repo.
 
     ```bash
     git clone https://github.com/conflkrupa/F1-Racing-Leaderboard-POC.git
