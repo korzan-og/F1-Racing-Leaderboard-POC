@@ -234,7 +234,7 @@ Your screen shot must include all the leaderboard, the time and Change driver bu
 If you missclick on close, you can restart by changing your driver and take a screenshot like that
 
 **You have to submit that screen shot to the below link**
-[Submit your F1 Leaderboard Data](https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/service-accounts/api-keys/manage-api-keys.html#add-an-api-key)
+[Submit your F1 Leaderboard Data]([Create an API key](https://forms.gle/mhFZHjnwCEytKjjF6))
 
 
 ## Graceful Shutdown
