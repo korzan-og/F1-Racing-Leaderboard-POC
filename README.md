@@ -242,7 +242,7 @@ If you missclick on close, you can restart by changing your driver and take a sc
 
 **You have to submit that screen shot to the below link**
 
-([Submit your F1 Leaderboard Data](https://forms.gle/mhFZHjnwCEytKjjF6))
+([Submit your F1 Leaderboard Data](https://form.jotform.com/252976367095371))
 
 
 ## Graceful Shutdown
