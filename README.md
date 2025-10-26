@@ -174,7 +174,7 @@ ssh -i ./<name of the pem file>.pem ubuntu@<PublicDNS>
       ```
     * This will display under which port the frontend is serving but these are internal IPs. 
 
-    * Open any browser and type <YOUR PUBLIC DNS>:8080. (Double check in your public dns address). This will display the UI of this application.
+    * Open any browser and type `<YOUR PUBLIC DNS>:8080`. Replace `<YOUR_PUBLIC_DNS>` with your value from previous lab. This will display the UI of this application.
 
 ##  Explanation of Backend Setup (`server.js`)
 
